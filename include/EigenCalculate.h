@@ -9,6 +9,6 @@
 #ifndef EigenCalculate_h
 #define EigenCalculate_h
 
-#include <stdio.h>
+
 
 #endif /* EigenCalculate_h */
