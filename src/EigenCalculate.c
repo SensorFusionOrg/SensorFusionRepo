@@ -62,21 +62,6 @@
 #include <stdlib.h>
 #include <complex.h>
 
-#define REAL   double
-#define TRUE   1
-#define FALSE  0
-#define ZERO   0.
-#define ONE    1.
-#define TWO    2.
-#define VEKTOR 0
-#define MACH_EPS DBL_EPSILON
-
-#define ABS(x) (((x) >= 0.)? (x) : -(x))
-#define SQRT(x) sqrt(x)
-#define SQR(x) ((x) * (x))
-#define SWAP(typ, a, b) { typ t; t = (a); (a) = (b); (b) = t; }
-#define BASIS basis()
-
 typedef struct {
     int n, max;
     REAL *mem;
@@ -1556,8 +1541,9 @@ int n_eigeng(double *_a, int n, double *evalr, double *evali, double *_evec)
 }
 
 
-int* EigenValueCalculate(void)
+int* EigenValueCalculate(int* matrix, int matrixsize)
 {
+    int n = matrixsize;
   /*  static double   a[3][3] = {{3.0, 2.0, 4.0},
                                {2.0, 0.0, 2.0},
                             {4.0, 2.0, 3.0}    };*/
@@ -1589,13 +1575,13 @@ int* EigenValueCalculate(void)
     };*/
     double *mem, *evalr, *evali, *evec;
     int i;
-    mem = (double*)calloc(5 *5 + 10, sizeof(double));
+    mem = (double*)calloc(n *n + 10, sizeof(double));
     evec = mem;
     evalr = evec ;
-    evali = evalr +5;
+    evali = evalr +n;
 //    n_eigeng(a[0], 5, evalr, evali, evec);
-    n_eigeng(a[0], 5, evalr, evali, 0);
-    for (i = 0; i < 5; ++i) {
+    n_eigeng(a[0], n, evalr, evali, 0);
+    for (i = 0; i < n; ++i) {
         printf("%le \n", evalr[i]);
     }
     
