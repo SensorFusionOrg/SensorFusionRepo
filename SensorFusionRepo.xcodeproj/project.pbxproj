@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		75EA3901236B3D3C007561E8 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 75EA3900236B3D3C007561E8 /* main.c */; };
+		75EA390A236B52FC007561E8 /* EigenCalculate.c in Sources */ = {isa = PBXBuildFile; fileRef = 75EA3909236B52FC007561E8 /* EigenCalculate.c */; };
+		75EA390D236B5311007561E8 /* SensorFusionAlgorithm.c in Sources */ = {isa = PBXBuildFile; fileRef = 75EA390C236B5311007561E8 /* SensorFusionAlgorithm.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,10 @@
 /* Begin PBXFileReference section */
 		75EA38FD236B3D3C007561E8 /* SensorFusionRepo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SensorFusionRepo; sourceTree = BUILT_PRODUCTS_DIR; };
 		75EA3900236B3D3C007561E8 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		75EA3908236B52FC007561E8 /* EigenCalculate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EigenCalculate.h; sourceTree = "<group>"; };
+		75EA3909236B52FC007561E8 /* EigenCalculate.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = EigenCalculate.c; sourceTree = "<group>"; };
+		75EA390B236B5311007561E8 /* SensorFusionAlgorithm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SensorFusionAlgorithm.h; sourceTree = "<group>"; };
+		75EA390C236B5311007561E8 /* SensorFusionAlgorithm.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = SensorFusionAlgorithm.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +47,8 @@
 		75EA38F4236B3D3C007561E8 = {
 			isa = PBXGroup;
 			children = (
-				75EA38FF236B3D3C007561E8 /* SensorFusionRepo */,
+				75EA3907236B52E6007561E8 /* include */,
+				75EA38FF236B3D3C007561E8 /* src */,
 				75EA38FE236B3D3C007561E8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,12 +61,23 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		75EA38FF236B3D3C007561E8 /* SensorFusionRepo */ = {
+		75EA38FF236B3D3C007561E8 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				75EA3909236B52FC007561E8 /* EigenCalculate.c */,
+				75EA390C236B5311007561E8 /* SensorFusionAlgorithm.c */,
 				75EA3900236B3D3C007561E8 /* main.c */,
 			);
-			path = SensorFusionRepo;
+			path = src;
+			sourceTree = "<group>";
+		};
+		75EA3907236B52E6007561E8 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				75EA3908236B52FC007561E8 /* EigenCalculate.h */,
+				75EA390B236B5311007561E8 /* SensorFusionAlgorithm.h */,
+			);
+			path = include;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,6 +138,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				75EA3901236B3D3C007561E8 /* main.c in Sources */,
+				75EA390D236B5311007561E8 /* SensorFusionAlgorithm.c in Sources */,
+				75EA390A236B52FC007561E8 /* EigenCalculate.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
