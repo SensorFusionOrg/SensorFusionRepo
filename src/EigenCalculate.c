@@ -55,6 +55,7 @@
 #include <stdlib.h>
 #include <complex.h>
 
+const int n=5;
 typedef struct {
     int n, max;
     REAL *mem;
@@ -1534,9 +1535,10 @@ int n_eigeng(double *_a, int n, double *evalr, double *evali, double *_evec)
 }
 
 
-int* EigenValueCalculate(int* matrix, int matrixsize)
+double* EigenValueCalculate(double a[n][n])
 {
-    int n = matrixsize;
+   // double** a = matrix;
+   // int n = matrixsize;
   /*  static double   a[3][3] = {{3.0, 2.0, 4.0},
                                {2.0, 0.0, 2.0},
                             {4.0, 2.0, 3.0}    };*/
@@ -1553,12 +1555,12 @@ int* EigenValueCalculate(int* matrix, int matrixsize)
     {-2.0, 11.0, 9.0, 15.0, 20.0},
     {-13.0, 2.0, 21.0, 30.0, -6.0},
     {17.0, 22.0, -5.0, 3.0, 6.0}};*/
-    static double a[5][5]={ {10.0,1.0,2.0,3.0,4.0},
+    /*static double a[5][5]={ {10.0,1.0,2.0,3.0,4.0},
     {1.0,9.0,-1.0,2.0,-3.0},
     {2.0,-1.0,7.0,3.0,-5.0},
     {3.0,2.0,3.0,12.0,-1.0},
     {4.0,-3.0,-5.0,-1.0,15.0}};
-
+*/
    /* static double a[6][6]={ {10001.0,3.0,5.0,7.0,9.0, 11.0},
                         {1.0,10003.0,5.0,7.0,9.0,11.0},
                         {1.0,3.0,10005.0,7.0,9.0,11.0},
@@ -1581,6 +1583,6 @@ int* EigenValueCalculate(int* matrix, int matrixsize)
     printf("\n\n");
     //printf("\n\n");
    // free(mem);
-    return *evalr;
+    return evalr;
 }
 
