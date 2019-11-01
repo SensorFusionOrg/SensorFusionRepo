@@ -1,8 +1,8 @@
 
 #include "SensorFusionAlgorithm.h"
 #include <math.h>
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 double** SDMCalculator(double sensorinputs[])
 {
     int i,j;
@@ -22,3 +22,4 @@ double** SDMCalculator(double sensorinputs[])
     }
     return d;
 }
+
