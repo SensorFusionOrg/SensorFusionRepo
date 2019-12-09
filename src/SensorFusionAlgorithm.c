@@ -10,11 +10,9 @@ double** SDMCalculator(double sensorinputs[])
     double **d = (double **)malloc(sizeof(double *)*size);
     for(i=0; i<size;i++)
     {
-        for(j=0;j<size;j++)
-        {
+        for(j=0;j<size;j++){
             double temp = sensorinputs[i]-sensorinputs[j];
-            if(temp<0)
-            {
+            if(temp<0){
                 temp = -temp;
             }
             d[i][j] = exp(-(temp));
@@ -22,4 +20,5 @@ double** SDMCalculator(double sensorinputs[])
     }
     return d;
 }
+
 

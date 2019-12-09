@@ -54,8 +54,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <complex.h>
+#include <time.h>
+#include <math.h>
+#include "eigen.h"
 
-const int n=5;
+const int n=2;
 typedef struct {
     int n, max;
     REAL *mem;
@@ -1539,17 +1542,45 @@ double* EigenValueCalculate(double a[n][n])
 {
     double *mem, *evalr, *evali, *evec;
     int i;
-    mem = (double*)calloc(n *n + 10, sizeof(double));
+    mem = (double*)calloc(n *n + 15, sizeof(double));
     evec = mem;
-    evalr = evec ;
+    evalr = evec;
     evali = evalr +n;
 //    n_eigeng(a[0], 5, evalr, evali, evec);
     n_eigeng(a[0], n, evalr, evali, 0);
     for (i = 0; i < n; ++i) {
         printf("%le \n", evalr[i]);
     }
-    
     printf("\n\n");
     return evalr;
 }
 
+matrix* eigenvector(matrix* a, double eigenvalue) {
+    matrix* b; // This matrix will store A-eI
+    matrix* zero; // This matrix will store a column vector of zeros
+    matrix* out;
+    double* ptr;
+    int i;
+
+    assert(a->width == a->height, "Matrix must be square.");
+
+    // Create our column vector of zeros
+    zero = makeMatrix(1, a->height);
+
+    // Copy A
+    b = copyMatrix(a);
+
+    // Subtract eigenvalue from the diagonal elements
+    ptr = b->data;
+    for (i = 0; i < b->height; i++) {
+        *ptr -= eigenvalue;
+        ptr += b->width + 1;
+    }
+
+    // Find the eigenvector
+    out = solver(b, zero);
+
+    freeMatrix(b);
+    freeMatrix(zero);
+    return out;
+}

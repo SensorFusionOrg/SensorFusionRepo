@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		75543EAD239EB93800E97B25 /* eigen.c in Sources */ = {isa = PBXBuildFile; fileRef = 75543E9C239EB93700E97B25 /* eigen.c */; };
+		75543EAF239EB93800E97B25 /* qr.c in Sources */ = {isa = PBXBuildFile; fileRef = 75543E9E239EB93700E97B25 /* qr.c */; };
+		75543EB4239EB93800E97B25 /* qsort.c in Sources */ = {isa = PBXBuildFile; fileRef = 75543EA4239EB93700E97B25 /* qsort.c */; };
+		75543EB5239EB93800E97B25 /* matrix.c in Sources */ = {isa = PBXBuildFile; fileRef = 75543EA8239EB93700E97B25 /* matrix.c */; };
+		75543EB6239EB93800E97B25 /* matrixadv.c in Sources */ = {isa = PBXBuildFile; fileRef = 75543EA9239EB93800E97B25 /* matrixadv.c */; };
 		75EA3901236B3D3C007561E8 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 75EA3900236B3D3C007561E8 /* main.c */; };
 		75EA390A236B52FC007561E8 /* EigenCalculate.c in Sources */ = {isa = PBXBuildFile; fileRef = 75EA3909236B52FC007561E8 /* EigenCalculate.c */; };
 		75EA390D236B5311007561E8 /* SensorFusionAlgorithm.c in Sources */ = {isa = PBXBuildFile; fileRef = 75EA390C236B5311007561E8 /* SensorFusionAlgorithm.c */; };
@@ -25,6 +30,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		75543E98239EB93700E97B25 /* eigen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eigen.h; sourceTree = "<group>"; };
+		75543E9A239EB93700E97B25 /* matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
+		75543E9C239EB93700E97B25 /* eigen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = eigen.c; sourceTree = "<group>"; };
+		75543E9E239EB93700E97B25 /* qr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qr.c; sourceTree = "<group>"; };
+		75543EA4239EB93700E97B25 /* qsort.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qsort.c; sourceTree = "<group>"; };
+		75543EA5239EB93700E97B25 /* matrixadv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrixadv.h; sourceTree = "<group>"; };
+		75543EA6239EB93700E97B25 /* qsort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qsort.h; sourceTree = "<group>"; };
+		75543EA7239EB93700E97B25 /* qr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qr.h; sourceTree = "<group>"; };
+		75543EA8239EB93700E97B25 /* matrix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = matrix.c; sourceTree = "<group>"; };
+		75543EA9239EB93800E97B25 /* matrixadv.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = matrixadv.c; sourceTree = "<group>"; };
 		75EA38FD236B3D3C007561E8 /* SensorFusionRepo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SensorFusionRepo; sourceTree = BUILT_PRODUCTS_DIR; };
 		75EA3900236B3D3C007561E8 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		75EA3908236B52FC007561E8 /* EigenCalculate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EigenCalculate.h; sourceTree = "<group>"; };
@@ -64,6 +79,11 @@
 		75EA38FF236B3D3C007561E8 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				75543EA4239EB93700E97B25 /* qsort.c */,
+				75543E9E239EB93700E97B25 /* qr.c */,
+				75543EA9239EB93800E97B25 /* matrixadv.c */,
+				75543EA8239EB93700E97B25 /* matrix.c */,
+				75543E9C239EB93700E97B25 /* eigen.c */,
 				75EA3909236B52FC007561E8 /* EigenCalculate.c */,
 				75EA390C236B5311007561E8 /* SensorFusionAlgorithm.c */,
 				75EA3900236B3D3C007561E8 /* main.c */,
@@ -74,6 +94,11 @@
 		75EA3907236B52E6007561E8 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				75543E98239EB93700E97B25 /* eigen.h */,
+				75543E9A239EB93700E97B25 /* matrix.h */,
+				75543EA5239EB93700E97B25 /* matrixadv.h */,
+				75543EA7239EB93700E97B25 /* qr.h */,
+				75543EA6239EB93700E97B25 /* qsort.h */,
 				75EA3908236B52FC007561E8 /* EigenCalculate.h */,
 				75EA390B236B5311007561E8 /* SensorFusionAlgorithm.h */,
 			);
@@ -106,7 +131,7 @@
 		75EA38F5236B3D3C007561E8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1110;
+				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = "Rishabh Jiresal";
 				TargetAttributes = {
 					75EA38FC236B3D3C007561E8 = {
@@ -138,8 +163,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				75EA3901236B3D3C007561E8 /* main.c in Sources */,
+				75543EB4239EB93800E97B25 /* qsort.c in Sources */,
+				75543EB5239EB93800E97B25 /* matrix.c in Sources */,
+				75543EAF239EB93800E97B25 /* qr.c in Sources */,
 				75EA390D236B5311007561E8 /* SensorFusionAlgorithm.c in Sources */,
 				75EA390A236B52FC007561E8 /* EigenCalculate.c in Sources */,
+				75543EB6239EB93800E97B25 /* matrixadv.c in Sources */,
+				75543EAD239EB93800E97B25 /* eigen.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +288,7 @@
 		75EA3905236B3D3C007561E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -266,6 +297,7 @@
 		75EA3906236B3D3C007561E8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
