@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-int n = 3;
+int n1 = 3;
 /*===========================================================================
  * assert
  * If the assertion is non-zero (i.e. true), then it returns.
@@ -54,15 +54,15 @@ matrix* readMatrix(char* filename) {
     return data;
 }
 
-matrix* convertArraytoMatrix(double a[n][n]) {
+matrix* convertArraytoMatrix(double a[n1][n1]) {
     matrix* data;
     double myValue;
     int width, height, i, elements;
     int scan_test;
     double *ptr;
 
-    width = n;
-    height = n;
+    width = n1;
+    height = n1;
 
     data = makeMatrix(width, height);
     elements = width * height;
