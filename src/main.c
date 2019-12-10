@@ -9,6 +9,6 @@ int main(int argc, const char * argv[]) {
     double a[2][2] = {{6,-1},{2,3}};
     double* eval;
     eval = EigenValueCalculate(a);
-    vector1 = eigenvector(a,5);
+  //  vector1 = eigenvector(a,5);
     printMatrix(vector1);
 }
