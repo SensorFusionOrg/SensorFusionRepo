@@ -5,7 +5,7 @@
 
 #include <stdio.h>
 
-extern double** SDMCalculator(double[]); // This function will calculate the support degree matrix and return it to the requesting function
+extern void SDMCalculator(); // This function will calculate the support degree matrix and return it to the requesting function
 extern double* PrincipalComponents(void); //This function will calculate all the principal components of the D matrix
 extern double* ComputationScore(void); //This function will calculate and eliminate the incorrect data
 extern double* OutputCompute(void); // This function will return the fused output to the main function

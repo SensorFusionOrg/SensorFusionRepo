@@ -1,14 +1,18 @@
-#include "EigenCalculate.h"
-#include "SensorFusionAlgorithm.h"
-#include "matrix.h"
 #include <stdio.h>
+#include <math.h>
+#include "SensorFusionAlgorithm.h"
+int main(void)
+{
+	//int i;
 
-int main(int argc, const char * argv[]) {
-   // int i;
-    matrix* vector1,b;
-    double a[2][2] = {{6,-1},{2,3}};
-    double* eval;
-    eval = EigenValueCalculate(a);
-  //  vector1 = eigenvector(a,5);
-    printMatrix(vector1);
+		printf("Values taken\n");
+		//double* SDM;
+		printf("sdm variable created\n");
+		SDMCalculator();
+		printf("got output from sdm function\n");
+		//for(i=0;i<25;i++)
+		//{
+		//		printf("%lf\n", SDM[i]);
+		//}
+
 }
