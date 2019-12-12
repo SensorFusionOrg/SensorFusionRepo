@@ -18,6 +18,11 @@
 extern void sdm_calculator();
 
 /*
+ * This function calculates alphas and the phis
+ */
+extern void compute_alpha_and_phi(double [],int size,double[],double []);
+
+/*
  * This function will calculate all the principal components of the
  * D matrix
  */

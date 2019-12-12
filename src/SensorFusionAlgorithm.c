@@ -68,5 +68,38 @@ void sdm_calculator(){
     //return e;
 }
 
+/* \brief Calculates the contribution rates i.e. alphas of every sensor and
+ *        accumulated contribution rates i.e., phi m
+ *
+ * Takes in the list of eigen values and two empty lists. Then fills the
+ * one empty list with the contribution rate of every sensor and the other
+ * empty list with accumulated contribution rates.
+ * @param[in] evals List of Eigen Values. The Eigen Value at index n
+ *                   corresponds to the nth sensor found in index n
+ *                   of sensorinputs array.
+ * @param[in] size  Number of eigen values which is same as the
+ *                  number of sensors and number of contribution
+ *                  rate values.
+ * @param[in,out] list_of_alphas The c_rate_list which is empty and after
+ *                               function execution, the list is filled with
+ *                               contribution rates of every sensor.
+ * @param[in,out] list_of_phi The acc_c_rate_list which is empty and after
+ *                            function execution, the list is filled with
+ *                            accumulated contribution rates i.e., phi
+ */
+void compute_alpha_and_phi(double evals[],int size,double list_of_alphas[],double list_of_phi[]){
+	double sum_of_evals = 0.0;
+	for(int i=0; i<size; i++){
+		sum_of_evals += evals[i];
+	}
+	for(int i=0;i <size;i++) {
+		list_of_alphas[i] = evals[i]/sum_of_evals;
+	}
+	list_of_phi[0] = list_of_alphas[0];
+	for(int i=1; i<size;i++){
+		list_of_phi[i] = list_of_phi[i-1] + list_of_alphas[i];
+	}
+}
+
 
 
