@@ -16,7 +16,10 @@
  *  function that is completed.
  */
 int main(void){
-
-    printf("Calling sdm_calculator \n");
-    sdm_calculator();
+	int size;
+	double sensorinputs[] = {53.2,52.6,52.7,53.2,52.8,53.3,49.7,53.1};
+	size = sizeof(sensorinputs)/sizeof(sensorinputs[0]);
+	printf("Calling sdm_calculator \n");
+    compute_phi(compute_alpha(eigen_value_calculation(sdm_calculator(sensorinputs, size), size),size),size);
+    //eigen_vector_calculation(sdm_calculator(sensorinputs,size),size,7);
 }

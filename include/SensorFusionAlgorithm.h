@@ -15,8 +15,11 @@
 /*
  * This function calculates the SDM and its Eigen values and vectors
  */
-extern void sdm_calculator();
-
+extern double* sdm_calculator(double[],int);
+extern double* eigen_value_calculation(double*,int);
+extern double* eigen_vector_calculation(double*,int,int);
+extern double* compute_alpha(double[],int);
+extern double* compute_phi(double[], int);
 /*
  * This function will calculate all the principal components of the
  * D matrix
