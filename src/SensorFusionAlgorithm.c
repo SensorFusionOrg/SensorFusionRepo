@@ -218,7 +218,7 @@ double* compute_integrated_support_degree_score(double sensorinputs[], double li
 				printf ("m(%d) = %lf\n", rows2, Z[rows2] );
 			}
 
-
+			return Z;
 }
 
 
