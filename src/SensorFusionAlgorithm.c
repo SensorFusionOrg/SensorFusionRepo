@@ -187,7 +187,7 @@ double* compute_integrated_support_degree_score(double sensorinputs[], double li
 		}
 		}
 	gsl_matrix *Z_temp =  gsl_matrix_alloc(size, size);
-	double Z[size];
+	double *Z = malloc(sizeof(double)*(size));
 	for(p=0;p<size;p++)
 	{
 		for(q=0;q<size;q++)
@@ -220,5 +220,65 @@ double* compute_integrated_support_degree_score(double sensorinputs[], double li
 
 			return Z;
 }
+
+
+double* faulty_sensor_and_sensor_fusion(double Z[], double inputsensors[], int size)
+{
+	int i,c, fault;
+	double *weight = malloc(sizeof(double)*(size));
+	double average, sum=0,calculation,fusion_value=0;
+	for(i=0;i<size;i++)
+	{
+		sum += Z[i];
+	}
+	average = (sum/size)*0.7;
+	for(i=0;i<size;i++)
+	{
+		if(Z[i]<average)
+		{
+			fault = i+1;
+			printf("Fault Detected! The sensor number %d is a faulty sensor!\n",fault);
+		}
+	}
+
+		      for (c = fault- 1; c < size - 1; c++){
+		         Z[c] = Z[c+1];}
+
+		      printf("Resultant array:\n");
+
+		      for (c = 0; c < size - 1; c++){
+		         printf("%lf\n", Z[c]);}
+
+		      for (c = fault- 1; c < size - 1; c++){
+		    		         inputsensors[c] = inputsensors[c+1];}
+
+		    		      printf("Resultant array:\n");
+
+		    		      for (c = 0; c < size - 1; c++){
+		    		         printf("%lf\n", inputsensors[c]);}
+
+for(i=0;i<size-1;i++)
+{
+	calculation += Z[i];
+}
+for(i=0;i<size-1;i++){
+	weight[i] = Z[i]/calculation;
+}
+for(i=0;i<size-1;i++)
+{
+	printf("Weight coefficient : %lf\n",weight[i]);
+}
+for(i=0;i<size-1;i++)
+{
+	fusion_value += weight[i] * inputsensors[i];
+}
+printf("Fusion Value: %lf",fusion_value);
+
+}
+
+
+
+
+
 
 
