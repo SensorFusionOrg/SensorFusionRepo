@@ -1,6 +1,7 @@
 /** \brief Main file from which different functions located in other files are
  *        called to perform different tasks of the algorithm.
  *
+ *
  *  Currently only the implementation of Support Degree Matrix and calculation
  *  of eigen values and vectors has been done by calling the sdm_calculator()
  *  function in SensorFusionAlgorithm file.

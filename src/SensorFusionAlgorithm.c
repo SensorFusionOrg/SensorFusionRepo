@@ -37,11 +37,11 @@ double* sdm_calculator(double sensorinputs[], int size){
 			temp = exp(-(temp));
 			d[i][j] =temp;
 			dmatrix[k]= temp;
-			//printf("%lf\t",dmatrix[k]);
+			printf("%lf\t",dmatrix[k]);
 			k++;
 
 			if(k%size==0){
-			//    printf("\n");
+			    printf("\n");
 			}
 	    }
 	}
@@ -59,7 +59,7 @@ double* eigen_value_calculation(double* e, int size){
 	double *eval_i = malloc(sizeof(double)*(size));
     for(i = 0; i < size; i++){
 	    eval_i[i] = gsl_vector_get (eval, i);
-		//printf("eigenvalue = %g\n", eval_i[i]);
+		printf("eigenvalue = %g\n", eval_i[i]);
 	}
     return eval_i;
 }
@@ -108,7 +108,7 @@ double* compute_alpha(double eval_i[],int size){
 	}
 	for(int i=0;i <size;i++) {
 		list_of_alphas[i] = eval_i[i]/sum_of_evals;
-		//printf("list of alpha = %lf\n",list_of_alphas[i]*100);
+		printf("list of alpha = %lf\n",list_of_alphas[i]*100);
 	}
 	return list_of_alphas;
 }
@@ -119,7 +119,7 @@ double* compute_phi(double list_of_alphas[], int size){
 	list_of_phi[0] = list_of_alphas[0];
 		for(int i=1; i<size;i++){
 			list_of_phi[i] = list_of_phi[i-1] + list_of_alphas[i];
-			//printf("list of phi = %lf\n",list_of_phi[i]*100);
+			printf("list of phi = %lf\n",list_of_phi[i]*100);
 		}
 		return list_of_phi;
 }
