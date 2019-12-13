@@ -23,6 +23,7 @@ int main(void){
 	size = sizeof(sensorinputs)/sizeof(sensorinputs[0]);
 	printf("Calling sdm_calculator \n");
 	fusion_result = faulty_sensor_and_sensor_fusion(compute_integrated_support_degree_score(sensorinputs,compute_alpha(eigen_value_calculation(sdm_calculator(sensorinputs,size),size),size), compute_phi(compute_alpha(eigen_value_calculation(sdm_calculator(sensorinputs,size),size),size),size), sdm_calculator(sensorinputs,size), 0.85, size),sensorinputs,size);
+	printf("Fusion result : %lf",fusion_result);
 	//faulty_sensor(Z,size);
 	// compute_phi(compute_alpha(eigen_value_calculation(sdm_calculator(sensorinputs, size), size),size),size);
     //eigen_vector_calculation(sdm_calculator(sensorinputs,size),size,7);

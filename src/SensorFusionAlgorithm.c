@@ -275,7 +275,6 @@ for(i=0;i<size-temp;i++)
 {
 	fusion_value += weight[i] * inputsensors[i];
 }
-printf("Fusion Value: %lf",fusion_value);
 return fusion_value;
 }
 
