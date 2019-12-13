@@ -22,7 +22,6 @@ double* sdm_calculator(double sensorinputs[], int size){
 
     int i,j,k=0;
 	//printf("size %d\n", size);
-	double d[size][size];
 	double *dmatrix = malloc(sizeof(double)*(size*size));
 
 	for(i=0; i<size;i++){
@@ -35,7 +34,6 @@ double* sdm_calculator(double sensorinputs[], int size){
 			}
 
 			temp = exp(-(temp));
-			d[i][j] =temp;
 			dmatrix[k]= temp;
 			//printf("%lf\t",dmatrix[k]);
 			k++;
@@ -226,7 +224,7 @@ double faulty_sensor_and_sensor_fusion(double Z[], double inputsensors[], int si
 {
 	int i,c, fault=0,temp;
 	double *weight = malloc(sizeof(double)*(size));
-	double average, sum=0,calculation,fusion_value=0;
+	double average, sum=0,calculation=0,fusion_value=0;
 	for(i=0;i<size;i++)
 	{
 		sum += Z[i];
@@ -278,7 +276,7 @@ for(i=0;i<size-temp;i++)
 	fusion_value += weight[i] * inputsensors[i];
 }
 printf("Fusion Value: %lf",fusion_value);
-
+return fusion_value;
 }
 
 
