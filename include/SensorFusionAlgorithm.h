@@ -20,6 +20,8 @@ extern double* eigen_value_calculation(double*,int);
 extern double* eigen_vector_calculation(double*,int,int);
 extern double* compute_alpha(double[],int);
 extern double* compute_phi(double[], int);
+double* compute_integrated_support_degree_score(double[], double[], double[], double[],double, int);
+
 /*
  * This function will calculate all the principal components of the
  * D matrix
