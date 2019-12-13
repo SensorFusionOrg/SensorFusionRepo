@@ -21,7 +21,7 @@
 double* sdm_calculator(double sensorinputs[], int size){
 
     int i,j,k=0;
-	printf("size %d\n", size);
+	//printf("size %d\n", size);
 	double d[size][size];
 	double *dmatrix = malloc(sizeof(double)*(size*size));
 
@@ -37,11 +37,11 @@ double* sdm_calculator(double sensorinputs[], int size){
 			temp = exp(-(temp));
 			d[i][j] =temp;
 			dmatrix[k]= temp;
-			printf("%lf\t",dmatrix[k]);
+			//printf("%lf\t",dmatrix[k]);
 			k++;
 
 			if(k%size==0){
-			    printf("\n");
+			 //   printf("\n");
 			}
 	    }
 	}
@@ -77,7 +77,7 @@ double* eigen_vector_calculation(double* dmatrix, int size, int column){
 		for(i=0;i<size;i++)
 		{
 			evec_i[i]= gsl_matrix_get(evec, i, column);
-			printf("Eigen Vector: %g\n", evec_i[i]);
+			//printf("Eigen Vector: %g\n", evec_i[i]);
 		}
 		return evec_i;
 }
@@ -108,7 +108,7 @@ double* compute_alpha(double eval_i[],int size){
 	}
 	for(int i=0;i <size;i++) {
 		list_of_alphas[i] = eval_i[i]/sum_of_evals;
-		//printf("list of alpha = %lf\n",list_of_alphas[i]*100);
+		//printf("list of alpha = %lf\n\n",list_of_alphas[i]*100);
 	}
 	return list_of_alphas;
 }
@@ -127,12 +127,12 @@ double* compute_phi(double list_of_alphas[], int size){
 
 double* compute_integrated_support_degree_score(double sensorinputs[], double list_of_alphas[], double list_of_phi[], double dmatrix[],double criterion, int size)
 {
-	double calculation,temp=0;
+	double calculation,temp=0,temp1=0,temp2=0;
 	gsl_matrix *y_temp =  gsl_matrix_alloc(size, size);
 	gsl_matrix *y =  gsl_matrix_alloc(size, size);
 	double *list_of_m_phi = malloc(sizeof(double)*(size));
 	double *evec_i = malloc(sizeof(double)*(size));
-	int i,j,k,l=0,rows,col,o,rows1=0,col1=0;
+	int i,j,k,l=0,rows,col,o,p,q,rows1=0,col1=0,rows2,col2;
 	for(i=0;i<size;i++)
 	{
 		list_of_m_phi[i]=list_of_phi[i];
@@ -158,7 +158,7 @@ double* compute_integrated_support_degree_score(double sensorinputs[], double li
 	{
 		calculation = evec_i[col]* gsl_matrix_get(dmatrix2d,rows,col);
 		gsl_matrix_set(y_temp, rows, col, calculation);
-		printf ("m(%d,%d) = %g\n", rows, col, gsl_matrix_get (y_temp, rows, col));
+//	printf ("m(%d,%d) = %g\n", rows, col, gsl_matrix_get (y_temp, rows, col));
 	}
 	}
 	for(rows=0;rows<size;rows++){
@@ -166,25 +166,59 @@ double* compute_integrated_support_degree_score(double sensorinputs[], double li
 	for(col=0;col<size;col++)
 	{
 		temp += gsl_matrix_get (y_temp, rows, col);
+		//printf("TEMP:%lf \n",temp);
 		}
+
 	if(rows1==8)
 	{
 			col1++;
 			rows1=0;
 	}
-	printf("TEMP:%lf \n",temp);
+
 	gsl_matrix_set(y, rows1++, col1, temp);
+	//printf("TEMP cols:%lf \n",temp);
 	}
 	}
 	for(col=0;col<size;col++)
 		{
 		for(rows=0;rows<size;rows++)
 		{
-			printf ("m(%d,%d) = %g\n", rows, col, gsl_matrix_get (y, rows, col));
+		//	printf ("m(%d,%d) = %g\n", rows, col, gsl_matrix_get (y, rows, col));
+		}
+		}
+	gsl_matrix *Z_temp =  gsl_matrix_alloc(size, size);
+	double Z[size];
+	for(p=0;p<size;p++)
+	{
+		for(q=0;q<size;q++)
+		{
+			temp1 =list_of_alphas[p]* gsl_matrix_get(y,q,p);
+			gsl_matrix_set(Z_temp, q, p, temp1);
+			//printf ("m(%d,%d) = %g\n", p, q, gsl_matrix_get (Z_temp, q, p));
+			//printf("alpha :%lf \n",list_of_alphas[q]);
+		}
+	}
+	for(rows2=0;rows2<size;rows2++){
+		temp2 = 0;
+	for(col2=0;col2<=i;col2++)
+	{
+		temp2 += gsl_matrix_get (Z_temp, rows2, col2);
+		//printf("TEMP:%lf \n",temp2);
 		}
 
+	if(rows2==8)
+	{
+			col2++;
+			rows2=0;
+	}
+	Z[rows2] = temp2;
+	}
+			for(rows2=0;rows2<size;rows2++)
+			{
+				printf ("m(%d) = %lf\n", rows2, Z[rows2] );
+			}
 
-}
+
 }
 
 
