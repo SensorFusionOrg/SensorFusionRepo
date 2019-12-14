@@ -14,7 +14,6 @@
 #include "../include/input.h"
 #include <errno.h>
 
-#define NUMBEROFTIMESTAMPS 3
 #define MAX 512
 
 /** \brief The main function which distributes various tasks to other functions
@@ -23,14 +22,19 @@
  *  function that is completed.
  */
 int main(void){
-	double fusion_result[NUMBEROFTIMESTAMPS];
 	int timestampsetcounter = 0;
-	double sensorvaluesets[NUMBEROFTIMESTAMPS][MAX];
-	double *sensorinputs[NUMBEROFTIMESTAMPS];
-
+	int numtimestamp = 0;
+	double sensorvaluesets[MAX][MAX];
 	sensorValueRead("../input/input.csv",sensorvaluesets);
+
+	while((int)sensorvaluesets[timestampsetcounter][0]!= -1){ // Scans through the entire set of input sets and stops at the end of data set
+		numtimestamp++;
+		timestampsetcounter++;
+	}
+	double fusion_result[numtimestamp];
+	double *sensorinputs[numtimestamp];
 	// First element is the number of sensors read from the .csv file
-	for (timestampsetcounter = 0; timestampsetcounter < NUMBEROFTIMESTAMPS; timestampsetcounter++) {
+	for (timestampsetcounter = 0; timestampsetcounter < numtimestamp; timestampsetcounter++) {
 		printf("Calculations for timestamp %lf\n", sensorvaluesets[timestampsetcounter][1]);
 		printf("Calling sdm_calculator \n");
 		sensorinputs[timestampsetcounter] = (double*)malloc(sensorvaluesets[timestampsetcounter][0]*sizeof(double)); 
