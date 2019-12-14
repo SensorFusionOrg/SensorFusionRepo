@@ -4,7 +4,7 @@
  *  of eigen values and vectors has been done here. An external library called
  *  gsl library is used for this purpose.
  */
-#include "SensorFusionAlgorithm.h"
+#include "../include/SensorFusionAlgorithm.h"
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -269,10 +269,4 @@ for(i=0;i<size;i++)
 }
 return fusion_value;
 }
-
-
-
-
-
-
 

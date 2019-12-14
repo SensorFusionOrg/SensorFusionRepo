@@ -1,0 +1,24 @@
+Time (24h clock),sensor_name,value
+0.3,sens1,53.2
+0.3,sens2,52.6
+0.3,sens3,42.7
+0.3,sens4,53.2
+0.3,sens5,52.8
+0.3,sens6,53.3
+0.3,sens7,45.7
+0.3,sens8,53.1
+1.3,sens1,12
+1.3,sens2,11
+1.3,sens3,7
+1.3,sens4,8
+1.3,sens5,9
+1.3,sens6,5
+1.3,sens7,9
+1.3,sens8,10
+2.3,sens1,13
+2.3,sens2,12
+2.3,sens3,13
+2.3,sens4,13
+2.3,sens5,14
+2.3,sens6,9
+2.3,sens8,8

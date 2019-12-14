@@ -1,14 +1,33 @@
-IDIR=./include
-SOURCE_DIR=./src
+IDIR=include
+SOURCE_DIR=src
 LIBDIR=/usr/local/include
 CC=gcc
-CFLAGS= -Wall 
+CFLAGS= -Wall
 
-compile:
-	$(CC) $(CFLAGS) -I$(IDIR) -I$(LIBDIR) $(SOURCE_DIR)/main.c $(SOURCE_DIR)/SensorFusionAlgorithm.c  -lm -lgsl -lgslcblas -o main
+#CREATING BIN, BUILD AND OUTPUT FOLDERS. THESE WILL CONTAIN EXECUTABLE, .o FILES AND OUTPUT OF PROGRAM RESPECTIVELY
+bin_folder := $(shell mkdir -p bin)
+build_folder := $(shell mkdir -p build)
+results_folder := $(shell mkdir -p output)
 
-run:
-	./main
+#COMPILATION AND LINKING. STATIC LINKING WITH GSL LIBRARY TO AVOID ANY ISSUES WHILE LINKING
+input: $(SOURCE_DIR)/sensorValuesInput.c
+	$(CC) -g -c $(CFLAGS) -I$(LIBDIR) $(SOURCE_DIR)/sensorValuesInput.c -o build/sensorValuesInput.o
 
-clean:
-	rm -f main $(SOURCE_DIR)/main.o
+SensorFusionAlgorithm: $(SOURCE_DIR)/SensorFusionAlgorithm.c
+	$(CC) -g -c $(CFLAGS) -I$(LIBDIR) $(SOURCE_DIR)/SensorFusionAlgorithm.c -o build/SensorFusionAlgorithm.o
+
+main: $(SOURCE_DIR)/main.c
+	$(CC) -g -c $(CFLAGS) -I$(LIBDIR) $(SOURCE_DIR)/main.c -o build/main.o
+
+executable: build/main.o build/SensorFusionAlgorithm.o build/sensorValuesInput.o
+	gcc -static -g -o bin/executable build/main.o build/SensorFusionAlgorithm.o build/sensorValuesInput.o -lgsl -lgslcblas -lm
+
+#TO BE RUN TO BUILD THE OBJECT FILES AND EXECUTABLE
+all: input SensorFusionAlgorithm main executable
+
+#RUNS THE PROGRAM
+run: 
+	./bin/executable
+#USED TO CLEAR THE BUILD AND BIN DIRECTORY
+clean: 
+	rm -f build/main.o build/SensorFusionAlgorithm.o build/sensorValuesInput.o bin/executable

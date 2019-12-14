@@ -9,7 +9,13 @@
  */
 #include <stdio.h>
 #include <math.h>
-#include "SensorFusionAlgorithm.h"
+#include <stdlib.h>
+#include "../include/SensorFusionAlgorithm.h"
+#include "../include/input.h"
+#include <errno.h>
+
+#define NUMBEROFTIMESTAMPS 3
+#define MAX 512
 
 /** \brief The main function which distributes various tasks to other functions
  *
@@ -17,13 +23,24 @@
  *  function that is completed.
  */
 int main(void){
-	int size;
-	double fusion_result;
-	double sensorinputs[] = {150,53.3,52.8,53.1,52.9,52.6,52.7,53.5};
-	size = sizeof(sensorinputs)/sizeof(sensorinputs[0]);
-	printf("Calling sdm_calculator \n");
-	fusion_result = faulty_sensor_and_sensor_fusion(compute_integrated_support_degree_score(sensorinputs,compute_alpha(eigen_value_calculation(sdm_calculator(sensorinputs,size),size),size), compute_phi(compute_alpha(eigen_value_calculation(sdm_calculator(sensorinputs,size),size),size),size), sdm_calculator(sensorinputs,size), 0.85, size),sensorinputs,size);
-	printf("Fusion result : %lf",fusion_result);
+	double fusion_result[NUMBEROFTIMESTAMPS];
+	int timestampsetcounter = 0;
+	double sensorvaluesets[NUMBEROFTIMESTAMPS][MAX];
+	double *sensorinputs[NUMBEROFTIMESTAMPS];
+
+	sensorValueRead("../input/input.csv",sensorvaluesets);
+	// First element is the number of sensors read from the .csv file
+	for (timestampsetcounter = 0; timestampsetcounter < NUMBEROFTIMESTAMPS; timestampsetcounter++) {
+		printf("Calculations for timestamp %lf\n", sensorvaluesets[timestampsetcounter][1]);
+		printf("Calling sdm_calculator \n");
+		sensorinputs[timestampsetcounter] = (double*)malloc(sensorvaluesets[timestampsetcounter][0]*sizeof(double)); 
+		for(int indexcounter=2; indexcounter < sensorvaluesets[timestampsetcounter][0]+2; indexcounter++){
+			sensorinputs[timestampsetcounter][indexcounter-2] = sensorvaluesets[timestampsetcounter][indexcounter]; 
+		}
+		fusion_result[timestampsetcounter] = 	faulty_sensor_and_sensor_fusion(compute_integrated_support_degree_score(sensorinputs[timestampsetcounter],compute_alpha(eigen_value_calculation(sdm_calculator(sensorinputs[timestampsetcounter],(int)sensorvaluesets[timestampsetcounter][0]),(int)sensorvaluesets[timestampsetcounter][0]),(int)sensorvaluesets[timestampsetcounter][0]), compute_phi(compute_alpha(eigen_value_calculation(sdm_calculator(sensorinputs[timestampsetcounter],(int)sensorvaluesets[timestampsetcounter][0]),(int)sensorvaluesets[timestampsetcounter][0]),(int)sensorvaluesets[timestampsetcounter][0]),(int)sensorvaluesets[timestampsetcounter][0]), sdm_calculator(sensorinputs[timestampsetcounter],(int)sensorvaluesets[timestampsetcounter][0]), 0.85, (int)sensorvaluesets[timestampsetcounter][0]),sensorinputs[timestampsetcounter],(int)sensorvaluesets[timestampsetcounter][0]);
+		printf("Fusion result : %lf",fusion_result[timestampsetcounter]);
+		printf("\n");
+	}
 	//faulty_sensor(Z,size);
 	// compute_phi(compute_alpha(eigen_value_calculation(sdm_calculator(sensorinputs, size), size),size),size);
     //eigen_vector_calculation(sdm_calculator(sensorinputs,size),size,7);
