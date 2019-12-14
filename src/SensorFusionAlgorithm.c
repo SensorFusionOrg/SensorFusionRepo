@@ -223,7 +223,7 @@ double* compute_integrated_support_degree_score(double sensorinputs[], double li
 
 double faulty_sensor_and_sensor_fusion(double Z[], double inputsensors[], int size)
 {
-	int i,c, tempfault=0,temp,j=0;
+	int i, tempfault=0,j=0;
 	double *weight = malloc(sizeof(double)*(size));
 	int *fault = malloc(sizeof(int)*(size));
 	double average, sum=0,calculation=0,fusion_value=0;
