@@ -167,7 +167,7 @@ double* compute_integrated_support_degree_score(double sensorinputs[], double li
 		//printf("TEMP:%lf \n",temp);
 		}
 
-	if(rows1==8)
+	if(rows1==size)
 	{
 			col1++;
 			rows1=0;
@@ -177,6 +177,7 @@ double* compute_integrated_support_degree_score(double sensorinputs[], double li
 	//printf("TEMP cols:%lf \n",temp);
 	}
 	}
+
 	for(col=0;col<size;col++)
 		{
 		for(rows=0;rows<size;rows++)
@@ -204,7 +205,7 @@ double* compute_integrated_support_degree_score(double sensorinputs[], double li
 		//printf("TEMP:%lf \n",temp2);
 		}
 
-	if(rows2==8)
+	if(rows2==size)
 	{
 			col2++;
 			rows2=0;
@@ -222,56 +223,47 @@ double* compute_integrated_support_degree_score(double sensorinputs[], double li
 
 double faulty_sensor_and_sensor_fusion(double Z[], double inputsensors[], int size)
 {
-	int i,c, fault=0,temp;
+	int i,c, tempfault=0,temp,j=0;
 	double *weight = malloc(sizeof(double)*(size));
+	int *fault = malloc(sizeof(int)*(size));
 	double average, sum=0,calculation=0,fusion_value=0;
 	for(i=0;i<size;i++)
 	{
 		sum += Z[i];
 	}
-	average = (sum/size)*0.7;
+	average = fabs((sum/size))*0.7;
 	for(i=0;i<size;i++)
 	{
-		if(Z[i]<average)
+		if(fabs(Z[i])<average)
 		{
-			fault = i+1;
-			printf("Fault Detected! The sensor number %d is a faulty sensor!\n",fault);
+			tempfault = i;
+			printf("Fault Detected! The sensor number %d is a faulty sensor!\n",tempfault+1);
+			fault[j]=tempfault;
+			j++;
 		}
 	}
-	if(fault==0)
-	{
-		temp=0;
-	}
-	else{
-		      for (c = fault- 1; c < size - 1; c++){
-		         Z[c] = Z[c+1];}
+for(i=0;i<j;i++)
+{
+	Z[fault[i]]=0;
+	inputsensors[fault[i]]=0;
+}
+for(i=0;i<size;i++)
+{
+	printf("Z = %lf\n",Z[i]);
+}
 
-		      printf("Resultant array:\n");
-
-		      for (c = 0; c < size - 1; c++){
-		         printf("%lf\n", Z[c]);}
-
-		      for (c = fault- 1; c < size - 1; c++){
-		    		         inputsensors[c] = inputsensors[c+1];}
-
-		    		      printf("Resultant array:\n");
-
-		    		      for (c = 0; c < size - 1; c++){
-		    		         printf("%lf\n", inputsensors[c]);}
-	}
-
-for(i=0;i<size-temp;i++)
+for(i=0;i<size;i++)
 {
 	calculation += Z[i];
 }
-for(i=0;i<size-temp;i++){
+for(i=0;i<size;i++){
 	weight[i] = Z[i]/calculation;
 }
-for(i=0;i<size-temp;i++)
+for(i=0;i<size;i++)
 {
 	printf("Weight coefficient : %lf\n",weight[i]);
 }
-for(i=0;i<size-temp;i++)
+for(i=0;i<size;i++)
 {
 	fusion_value += weight[i] * inputsensors[i];
 }
