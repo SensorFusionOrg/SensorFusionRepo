@@ -1,4 +1,5 @@
-/**
+/** \file SensorFusionAlgorithm.h
+ *
  *  Contains the functions which are defined in a very beginning of the
  *  project. These functions will be changed according to the
  *  convenience and flow of the code. The major aim is to reduce the
