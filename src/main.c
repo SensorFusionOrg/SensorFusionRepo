@@ -25,7 +25,7 @@ int main(void){
 	int timestampsetcounter = 0;
 	int numtimestamp = 0;
 	double sensorvaluesets[MAX][MAX];
-	sensorValueRead("../input/input.csv",sensorvaluesets);
+	sensorValueRead("./input/input.csv",sensorvaluesets);
 
 	while((int)sensorvaluesets[timestampsetcounter][0]!= -1){ // Scans through the entire set of input sets and stops at the end of data set
 		numtimestamp++;

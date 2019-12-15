@@ -58,7 +58,8 @@ void sensorValueRead(const char *File , double array[][MAX]) {
 	}
 	for(int rowCounter = 0; rowCounter<counter; rowCounter++){
 		free(sensorTuples[rowCounter]);
-	}	
+	}
+	fclose(fp);	
 }
 /********************************************************************************************************************
 * Function to fill the array of Sensor Values with the First element as the number of sensor, second element 
