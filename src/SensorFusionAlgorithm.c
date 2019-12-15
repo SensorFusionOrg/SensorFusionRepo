@@ -4,10 +4,11 @@
  *  of eigen values and vectors has been done here. An external library called
  *  gsl library is used for this purpose.
  */
-#include "SensorFusionAlgorithm.h"
+#include "../include/SensorFusionAlgorithm.h"
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <gsl/gsl_math.h>
 #include <gsl/gsl_eigen.h>
 
@@ -227,6 +228,11 @@ double faulty_sensor_and_sensor_fusion(double Z[], double inputsensors[], int si
 	double *weight = malloc(sizeof(double)*(size));
 	int *fault = malloc(sizeof(int)*(size));
 	double average, sum=0,calculation=0,fusion_value=0;
+	FILE *fp = fopen("./output/results.txt","a+");
+		if (fp == NULL) {
+    			printf("File Open in faulty_sensor Failed\n");
+    		return 1;
+		}
 	for(i=0;i<size;i++)
 	{
 		sum += Z[i];
@@ -238,10 +244,12 @@ double faulty_sensor_and_sensor_fusion(double Z[], double inputsensors[], int si
 		{
 			tempfault = i;
 			printf("Fault Detected! The sensor number %d is a faulty sensor!\n",tempfault+1);
+			fprintf(fp, "%s %d %s", "Fault Detected! The sensor number",  tempfault+1 ,"is a faulty sensor!\n");
 			fault[j]=tempfault;
 			j++;
 		}
 	}
+	fclose(fp);
 for(i=0;i<j;i++)
 {
 	Z[fault[i]]=0;
@@ -269,10 +277,4 @@ for(i=0;i<size;i++)
 }
 return fusion_value;
 }
-
-
-
-
-
-
 
