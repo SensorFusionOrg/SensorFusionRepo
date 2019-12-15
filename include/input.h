@@ -11,7 +11,7 @@
 #define TUPLE_SIZE 3
 
 void sensorValueRead(const char *File , double array[][MAX]);
-void getData(char *buff, char *sensorToken[TUPLE_SIZE]);
-void fillArray(int timeStampSet, int counter, char **sensorTuples[], double sensorValues[], double array[][MAX]);
+void getData(char *buff, char *sensorToken[]);
+void fillArray(char *sensorTuples[], int cc, double array[][MAX]);
 
 #endif /* input_h */
