@@ -1,14 +1,19 @@
 /*********************************************************************   
-* Function to read inputs from an input file. The
-*
-* input: input file in CSV format
-* output: SensorValues, a 2-D array to store sensor value sets for     
-* each timestamp given in the input file. 
+* File containing logic to read sensor values from an input file.
+* 
 **********************************************************************/
 #include<stdio.h>
 #include<string.h>
 #include <stdlib.h>
 #include "../include/input.h"
+
+/*********************************************************************   
+* Function to read inputs from an input file. The
+*
+* @input: input file in CSV format
+* @output: SensorValues, a 2-D array to store sensor value sets for     
+* each timestamp given in the input file. 
+**********************************************************************/
 
 void sensorValueRead(const char *File , double array[][MAX])
 {
@@ -30,7 +35,7 @@ void sensorValueRead(const char *File , double array[][MAX])
 			strcpy(sensorTuples[1],sensorTuples[1]+4); //To get the sensor Number after omitting prefixed string i.e. 'sens10' becomes '10'
 			if (timestmpValue!=NULL){
 				if(strcmp(timestmpValue,sensorTuples[0]))
-					flag = 1;
+					flag = 1;		// To indicate that there is another timestamp for which sensor values are provided
 					
 			}
 			timestmpValue = sensorTuples[0];
@@ -38,7 +43,7 @@ void sensorValueRead(const char *File , double array[][MAX])
 				cc++;
 				flag = 0;
 			}
-			fillArray(sensorTuples, cc, array);
+			fillArray(sensorTuples, cc, array);	// Store the sensor values for each timestamp
 		} 
     	}
 	array[cc][0] = -1;	// Placing a sentinel to indicate end of sensor value set
