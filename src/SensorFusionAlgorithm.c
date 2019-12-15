@@ -5,10 +5,11 @@
  *  called gsl.
  *  TODO: Comments for this file and each method of this file has to be updated
  */
-#include "SensorFusionAlgorithm.h"
+#include "../include/SensorFusionAlgorithm.h"
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <gsl/gsl_math.h>
 #include <gsl/gsl_eigen.h>
 
@@ -219,38 +220,47 @@ double* compute_integrated_support_degree_score(double sensorinputs[],
     for(rows2=0;rows2<size;rows2++){
         printf ("m(%d) = %lf\n", rows2, Z[rows2] );
     }
-
-    return Z;
+  return Z;
 }
 
-/**
- * TODO: Comments needed
- */
-double faulty_sensor_and_sensor_fusion(double Z[],double inputsensors[],
-                                       int size){
-    int i, tempfault=0,j=0;
-    double *weight = malloc(sizeof(double)*(size));
-    int *fault = malloc(sizeof(int)*(size));
-    double average, sum=0,calculation=0,fusion_value=0;
-    for(i=0;i<size;i++){
-        sum += Z[i];
-    }
-    average = fabs((sum/size))*0.7;
-    for(i=0;i<size;i++){
-        if(fabs(Z[i])<average){
-            tempfault = i;
-            printf("Fault Detected! The sensor number %d is a faulty sensor!\n",tempfault+1);
-            fault[j]=tempfault;
-            j++;
-        }
-    }
-    for(i=0;i<j;i++){
-        Z[fault[i]]=0;
-        inputsensors[fault[i]]=0;
-    }
-    for(i=0;i<size;i++){
-        printf("Z = %lf\n",Z[i]);
-    }
+
+double faulty_sensor_and_sensor_fusion(double Z[], double inputsensors[], int size)
+{
+	int i, tempfault=0,j=0;
+	double *weight = malloc(sizeof(double)*(size));
+	int *fault = malloc(sizeof(int)*(size));
+	double average, sum=0,calculation=0,fusion_value=0;
+	FILE *fp = fopen("./output/results.txt","a+");
+		if (fp == NULL) {
+    			printf("File Open in faulty_sensor Failed\n");
+    		return 1;
+		}
+	for(i=0;i<size;i++)
+	{
+		sum += Z[i];
+	}
+	average = fabs((sum/size))*0.7;
+	for(i=0;i<size;i++)
+	{
+		if(fabs(Z[i])<average)
+		{
+			tempfault = i;
+			printf("Fault Detected! The sensor number %d is a faulty sensor!\n",tempfault+1);
+			fprintf(fp, "%s %d %s", "Fault Detected! The sensor number",  tempfault+1 ,"is a faulty sensor!\n");
+			fault[j]=tempfault;
+			j++;
+		}
+	}
+	fclose(fp);
+for(i=0;i<j;i++)
+{
+	Z[fault[i]]=0;
+	inputsensors[fault[i]]=0;
+}
+for(i=0;i<size;i++)
+{
+	printf("Z = %lf\n",Z[i]);
+}
     for(i=0;i<size;i++){
         calculation += Z[i];
     }
