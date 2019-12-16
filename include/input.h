@@ -1,8 +1,8 @@
-/***************************************************************
- *  Contains the function declarations to be used by the main.c 
+/** \file input.h
+ *
+ *  Contains the declarations of functions to be used by the main.c
  *  to invoke the functions defined in sensorValuesInput.c
- *  
- ***************************************************************/
+ */
 
 #ifndef input_h
 #define input_h

@@ -1,10 +1,9 @@
-/** \brief Contains functions performing the actual algorithm
- *
- *  The implementation of Support Degree Matrix and calculation
- *  of eigen values and vectors has been done here using an external library
- *  called gsl.
- *  TODO: Comments for this file and each method of this file has to be updated
+/** \file SensorFusionAlgorithm.c
+ *  Contains functions performing each step of the algorithm.
+ *  The calculation of Eigen Values, Eigen Vectors and integrated support
+ *  degree score has been implemented using an external library called gsl.
  */
+
 #include "../include/SensorFusionAlgorithm.h"
 #include <math.h>
 #include <stdio.h>
@@ -13,12 +12,16 @@
 #include <gsl/gsl_math.h>
 #include <gsl/gsl_eigen.h>
 
-/** \brief Calculate Support Degree Matrix and its Eigen values & vectors
+/** \brief Calculate Support Degree Matrix.
  *
- *  Currently the sensor input data has been hard-coded in sensorinputs[]
- *  array. This will be later changed to dynamically handle inputs from
- *  a function that reads csv file and outputs an array containing sensor
- *  inputs.
+ *  Creates the support degree matrix as a 1D array instead of a 2D array
+ *  to make it easier for the calculation of Eigen Values and Eigen Vectors
+ *  using the gsl library.
+ *
+ *  @param[in] sensorinputs Readings of all sensors for a specific timestamp.
+ *  @param[in] size The number of sensors being considered.
+ *
+ *  \return A 1D array which is the Support Degree Matrix.
  */
 double* sdm_calculator(double sensorinputs[], int size){
 
@@ -48,8 +51,17 @@ double* sdm_calculator(double sensorinputs[], int size){
     return dmatrix;
 }
 
-/**
- * TODO: Comments needed
+/** \brief Calculates EigenValues for a given Support Degree Matrix.
+ *
+ *  Creates an 1D array of EigenValues for a given support degree matrix
+ *  using functions from the gsl external library.
+ *
+ *  @param[in] dmatrix The Support Degree matrix produced by sdm_calculator
+ *   function.
+ *  @param[in] size The number of sensors being considered which is same as
+ *   size of dmatrix.
+ *
+ *  \return A 1D array of EigenValues in descending order for the given dmatrix.
  */
 double* eigen_value_calculation(double* dmatrix, int size){
     int i;
@@ -68,8 +80,24 @@ double* eigen_value_calculation(double* dmatrix, int size){
     return eval_i;
 }
 
-/**
- * TODO: Comments needed
+/** \brief Produces EigenVectors for a specific EigenValue of
+ *   Support Degree Matrix.
+ *
+ *  Creates an 1D array of EigenVectors for a given support degree matrix
+ *  using functions from the gsl external library. The actual EigenValue is
+ *  not supplied but the position of EigenValue in a descending sorted
+ *  array of EigenValues as returned by eigen_value_calculation method is
+ *  given.
+ *
+ *  @param[in] dmatrix The Support Degree matrix produced by sdm_calculator
+ *   function.
+ *  @param[in] size The number of sensors being considered which is same as
+ *   size of dmatrix.
+ *  @param[in] column The column number of the EigenVector matrix produced
+ *   by the gsl library. This is same as the position of EigenValue when
+ *   the EigenValues are sorted in descending order.
+ *
+ *  \return A 1D array of EigenVectors for the given EigenValue.
  */
 double* eigen_vector_calculation(double* dmatrix, int size, int column){
     int i;
@@ -88,32 +116,28 @@ double* eigen_vector_calculation(double* dmatrix, int size, int column){
     return evec_i;
 }
 
-/* \brief Calculates the contribution rates i.e. alphas of every sensor and
- *        accumulated contribution rates i.e., phi m
+/* \brief Calculates the contribution rates i.e. alphas of every sensor
+ *  for a specific time stamp.
  *
- * TODO: Comments need updation
- * Takes in the list of eigen values and two empty lists. Then fills the
- * one empty list with the contribution rate of every sensor and the other
- * empty list with accumulated contribution rates.
- * @param[in] evals List of Eigen Values. The Eigen Value at index n
- *                   corresponds to the nth sensor found in index n
- *                   of sensorinputs array.
- * @param[in] size  Number of eigen values which is same as the
- *                  number of sensors and number of contribution
- *                  rate values.
- * @param[in,out] list_of_alphas The c_rate_list which is empty and after
- *                               function execution, the list is filled with
- *                               contribution rates of every sensor.
- * @param[in,out] list_of_phi The acc_c_rate_list which is empty and after
- *                            function execution, the list is filled with
- *                            accumulated contribution rates i.e., phi
+ * Produces an array of contribution rates a.k.a alphas where the contribution
+ * rate of nth sensor is the nth element in that array.
+ *
+ * @param[in] eval_i EigenValues in descending order as produced by
+ *  eigen_value_calculation function.
+ * @param[in] size Number of EigenValues which is same as the
+ *   number of sensors and number of contribution rate values.
+ *
+ * \return Contribution rates of all sensors for a specific time stamp.
  */
 double* compute_alpha(double eval_i[],int size){
     double *list_of_alphas = malloc(sizeof(double)*(size));
     double sum_of_evals = 0.0;
+
+    //Summation of EigenValues
     for(int i=0; i<size; i++){
         sum_of_evals += eval_i[i];
     }
+    //Constructing an array of alphas a.k.a contribution rates
     for(int i=0;i <size;i++){
         list_of_alphas[i] = eval_i[i]/sum_of_evals;
         //printf("list of alpha = %lf\n\n",list_of_alphas[i]*100);
@@ -121,13 +145,28 @@ double* compute_alpha(double eval_i[],int size){
     return list_of_alphas;
 }
 
-/**
- * TODO: Comments needed
+/* \brief Calculates the accumulated contribution rates i.e. phis for a specific
+ *   time stamp.
+ *
+ * Produces an array of accumulated contribution rates where the accumulated
+ * contribution rate of first n sensors is the nth element in that array.
+ *
+ * @param[in] list_of_alphas Contribution rates i.e., alphas as produced by
+ *  compute_alpha function.
+ * @param[in] size Number of contribution rates which is the same as the
+ *   number of sensors.
+ *
+ * \return Array of accumulated contribution rates of n sensors
+ *   for specific time stamp.
  */
 double* compute_phi(double list_of_alphas[], int size){
     double *list_of_phi = malloc(sizeof(double)*(size));
+
+    //The Contribution rate and the Accumulated Contribution rate of first
+    //sensor is the same
     list_of_phi[0] = list_of_alphas[0];
     //printf("list of phi = %lf\n",list_of_phi[0]*100);
+
     for(int i=1; i<size;i++){
         list_of_phi[i] = list_of_phi[i-1] + list_of_alphas[i];
         //printf("list of phi = %lf\n",list_of_phi[i]*100);
@@ -135,8 +174,27 @@ double* compute_phi(double list_of_alphas[], int size){
     return list_of_phi;
 }
 
-/**
- * TODO: Comments needed
+/* \brief Calculates the integrated support degree score of all sensors at a
+ * specific time stamp.
+ *
+ * Produces an array of integrated support degree scores where the score
+ * nth sensor is the nth element in that array.
+ *
+ * @param[in] sensorinputs Readings of all sensors at a specific timestamp.
+ * @param[in] list_of_alphas Contribution rates a.k.a alphas where the
+ *  contribution rate of nth sensor is the nth element in that array.
+ * @param[in] list_of_phi Accumulated contribution rates a.k.a phis where
+ *  the accumulated contribution rate of m sensors is the mth element in array.
+ * @param[in] dmatrix Support Degree Matrix of the sensor readings at a
+ *  specific time stamp.
+ * @param[in] criterion The minimum value of accumulated contribution rate
+ *  required to determine the number of principal components to be taken
+ *  into consideration. The expected value is not in percentage but between
+ *  0 and 1.
+ * @param[in] size The number of sensors.
+ *
+ * \return An array consisting of the integrated support degree score
+ *   of each sensor at a specific timestamp.
  */
 double* compute_integrated_support_degree_score(double sensorinputs[],
             double list_of_alphas[], double list_of_phi[], double dmatrix[],
@@ -164,7 +222,7 @@ double* compute_integrated_support_degree_score(double sensorinputs[],
     }
 
     for(o=0;o<size;o++){
-        evec_i = eigen_vector_calculation(sdm_calculator(sensorinputs,size), size, o);
+        evec_i = eigen_vector_calculation(sdm_calculator(sensorinputs,size),size,o);
         for(col=0;col<size;col++){
             for(rows=0;rows<size;rows++){
                 calculation = evec_i[col]* gsl_matrix_get(dmatrix2d,rows,col);
@@ -223,53 +281,79 @@ double* compute_integrated_support_degree_score(double sensorinputs[],
   return Z;
 }
 
+/* \brief Determines a fused reading by eliminating erroneous readings
+ *
+ * Outputs a list of faulty sensors and a final fused reading value
+ * for a specific time stamp on to a text file.
+ *
+ * @param[in] Z Array containing integrated support degree score of each
+ *  sensor at a specific timestamp.
+ * @param[in] inputsensors Readings of all sensors for a specific timestamp.
+ * @param[in] size The number of sensors being considered.
+ *
+ * \return The fused reading value after eliminating faulty sensor readings.
+ */
+double faulty_sensor_and_sensor_fusion(double Z[], double inputsensors[],
+		int size){
 
-double faulty_sensor_and_sensor_fusion(double Z[], double inputsensors[], int size)
-{
-	int i, tempfault=0,j=0;
-	double *weight = malloc(sizeof(double)*(size));
-	int *fault = malloc(sizeof(int)*(size));
-	double average, sum=0,calculation=0,fusion_value=0;
-	FILE *fp = fopen("./output/results.txt","a+");
-		if (fp == NULL) {
-    			printf("File Open in faulty_sensor Failed\n");
-    		return 1;
-		}
-	for(i=0;i<size;i++)
-	{
-		sum += Z[i];
-	}
-	average = fabs((sum/size))*0.7;
-	for(i=0;i<size;i++)
-	{
-		if(fabs(Z[i])<average)
-		{
-			tempfault = i;
-			printf("Fault Detected! The sensor number %d is a faulty sensor!\n",tempfault+1);
-			fprintf(fp, "%s %d %s", "Fault Detected! The sensor number",  tempfault+1 ,"is a faulty sensor!\n");
-			fault[j]=tempfault;
-			j++;
-		}
+    int i, tempfault=0,j=0;
+    double *weight = malloc(sizeof(double)*(size));
+    int *fault = malloc(sizeof(int)*(size));
+    double average, sum=0,calculation=0,fusion_value=0;
+
+    //Opening the output file to append the list of faulty sensors
+    //for the current time stamp
+    FILE *fp = fopen("./output/results.txt","a+");
+        if (fp == NULL) {
+            printf("File Open in faulty_sensor Failed\n");
+            return 1;
+        }
+
+    //Summation of integrated support degree score of all sensors
+    for(i=0;i<size;i++){
+        sum += Z[i];
+    }
+
+    average = fabs((sum/size))*0.7;
+    for(i=0;i<size;i++){
+
+    	//Identifying a faulty sensor and storing it's index in an int array called fault
+        if(fabs(Z[i])<average){
+            tempfault = i;
+            printf("Fault Detected! The sensor number %d is a faulty sensor!\n",tempfault+1);
+            fprintf(fp, "%s %d %s", "Fault Detected! The sensor number",  tempfault+1 ,"is a faulty sensor!\n");
+            fault[j]=tempfault;
+            j++;
+        }
 	}
 	fclose(fp);
-for(i=0;i<j;i++)
-{
-	Z[fault[i]]=0;
-	inputsensors[fault[i]]=0;
-}
-for(i=0;i<size;i++)
-{
-	printf("Z = %lf\n",Z[i]);
-}
+
+	//Making the reading and score of all faulty sensors to zero
+    for(i=0;i<j;i++){
+        Z[fault[i]]=0;
+        inputsensors[fault[i]]=0;
+    }
+    for(i=0;i<size;i++){
+        printf("Z = %lf\n",Z[i]);
+    }
+
+    //Assigning the sum of integrated support degree score of all
+    //NON-FAULTY sensors to 'calculation' variable
     for(i=0;i<size;i++){
         calculation += Z[i];
     }
+
+    //Creating an array of weight coefficients of each sensor by dividing a
+    //sensor's integrated support degree score by sum of all scores
     for(i=0;i<size;i++){
         weight[i] = Z[i]/calculation;
     }
     for(i=0;i<size;i++){
         printf("Weight coefficient : %lf\n",weight[i]);
     }
+
+    //Calculating the fused value as a summation of product of
+    //weight coefficient and sensor reading
     for(i=0;i<size;i++){
         fusion_value += weight[i] * inputsensors[i];
     }
