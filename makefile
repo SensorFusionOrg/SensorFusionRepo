@@ -45,4 +45,4 @@ runtest:
 	./test/bin/testOutput
 #USED TO CLEAR THE BUILD AND BIN DIRECTORY
 clean: 
-	rm -f build/main.o build/SensorFusionAlgorithm.o build/sensorValuesInput.o bin/executable
+	rm -f build/main.o build/SensorFusionAlgorithm.o build/sensorValuesInput.o bin/executable test/build/main_test.o test/build/testcases.o test/bin/testOutput test/build/SensorFusionAlgorithm.o
