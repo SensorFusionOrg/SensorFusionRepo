@@ -289,6 +289,7 @@ double* compute_integrated_support_degree_score(double sensorinputs[],
  * @param[in] Z Array containing integrated support degree score of each
  *  sensor at a specific timestamp.
  * @param[in] inputsensors Readings of all sensors for a specific timestamp.
+ * @param[in] criterion from the user multiplying to the average.
  * @param[in] size The number of sensors being considered.
  *
  * \return The fused reading value after eliminating faulty sensor readings.
