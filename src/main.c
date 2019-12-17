@@ -19,6 +19,10 @@
  *  containing the fused value for each time stamp and a list of faulty sensors.
  */
 int main(void){
+	double criterion;
+	printf("Enter the criterion for the principal components (percentage) : ");
+	scanf("%lf", &criterion);
+	criterion = criterion/100;
     int timestampsetcounter = 0;
     int numtimestamp = 0;
     double sensorvaluesets[MAX][MAX];
@@ -67,8 +71,8 @@ int main(void){
 				sensorinputs[timestampsetcounter],(int)sensorvaluesets[timestampsetcounter][0]),
 				(int)sensorvaluesets[timestampsetcounter][0]),(int)sensorvaluesets[timestampsetcounter][0]),
 				(int)sensorvaluesets[timestampsetcounter][0]),sdm_calculator(sensorinputs[timestampsetcounter],
-				(int)sensorvaluesets[timestampsetcounter][0]),0.85,(int)sensorvaluesets[timestampsetcounter][0]),
-				sensorinputs[timestampsetcounter],(int)sensorvaluesets[timestampsetcounter][0]);
+				(int)sensorvaluesets[timestampsetcounter][0]),criterion,(int)sensorvaluesets[timestampsetcounter][0]),
+				sensorinputs[timestampsetcounter],criterion,(int)sensorvaluesets[timestampsetcounter][0]);
         printf("Fusion result : %lf",fusion_result[timestampsetcounter]);
         printf("\n");
 

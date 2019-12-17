@@ -116,7 +116,7 @@ double* eigen_vector_calculation(double* dmatrix, int size, int column){
     return evec_i;
 }
 
-/* \brief Calculates the contribution rates i.e. alphas of every sensor
+/** \brief Calculates the contribution rates i.e. alphas of every sensor
  *  for a specific time stamp.
  *
  * Produces an array of contribution rates a.k.a alphas where the contribution
@@ -145,7 +145,7 @@ double* compute_alpha(double eval_i[],int size){
     return list_of_alphas;
 }
 
-/* \brief Calculates the accumulated contribution rates i.e. phis for a specific
+/** \brief Calculates the accumulated contribution rates i.e. phis for a specific
  *   time stamp.
  *
  * Produces an array of accumulated contribution rates where the accumulated
@@ -174,7 +174,7 @@ double* compute_phi(double list_of_alphas[], int size){
     return list_of_phi;
 }
 
-/* \brief Calculates the integrated support degree score of all sensors at a
+/** \brief Calculates the integrated support degree score of all sensors at a
  * specific time stamp.
  *
  * Produces an array of integrated support degree scores where the score
@@ -281,7 +281,7 @@ double* compute_integrated_support_degree_score(double sensorinputs[],
   return Z;
 }
 
-/* \brief Determines a fused reading by eliminating erroneous readings
+/** \brief Determines a fused reading by eliminating erroneous readings
  *
  * Outputs a list of faulty sensors and a final fused reading value
  * for a specific time stamp on to a text file.
@@ -293,7 +293,7 @@ double* compute_integrated_support_degree_score(double sensorinputs[],
  *
  * \return The fused reading value after eliminating faulty sensor readings.
  */
-double faulty_sensor_and_sensor_fusion(double Z[], double inputsensors[],
+double faulty_sensor_and_sensor_fusion(double Z[], double inputsensors[], double criterion,
 		int size){
 
     int i, tempfault=0,j=0;
@@ -314,7 +314,9 @@ double faulty_sensor_and_sensor_fusion(double Z[], double inputsensors[],
         sum += Z[i];
     }
 
-    average = fabs((sum/size))*0.7;
+    average = fabs((sum/size))*criterion;
+   // printf("Criterion: %lf",criterion);
+    //printf("Average : %lf", average);
     for(i=0;i<size;i++){
 
     	//Identifying a faulty sensor and storing it's index in an int array called fault

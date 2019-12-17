@@ -1,9 +1,9 @@
-/******************************************************************************************   
-* \File containing test case definitions for each function defined in the program
+/** \file testcases.c
+* Containing test case definitions for each function defined in the program
 * Each test case calls the function and gets the returned values. It then checks those values
 * against the expected value from the function. If both match, the test case passes 
 * otherwise it fails.
-*******************************************************************************************/
+*/
 #include<stdio.h>
 #include<string.h>
 #include <stdlib.h>
@@ -39,13 +39,12 @@ void test_sensorinput_from_file(FILE *fpout){
     }
 }
 
-/************************************************************************************
- * \This function tests the sdm calculator function outputs against the expected value
+/** \brief function tests the sdm calculator function outputs against the expected value
  * It writes Passed or Failed into a file according to the outcome of the test.
  * 
- * @param :               FILE
- * @return:               void
- ************************************************************************************/
+ * @param[in]               FILE
+ * \return               void
+ */
 
 
 void test_sdm_calculator(FILE *fp){
@@ -70,13 +69,12 @@ void test_sdm_calculator(FILE *fp){
         fprintf(fp, "%s---> %s\n",__func__, "Failed");
     }
 }
-/**********************************************************************************************
- * \This function tests the eigen_value_calculation function outputs against the expected value
+/** \brief function tests the eigen_value_calculation function outputs against the expected value
  * It writes Passed or Failed into a file according to the outcome of the test.
  * 
- * @param :               FILE
- * @return:               void
- **********************************************************************************************/
+ * @param[in]               FILE
+ * \return               void
+ */
 
 void test_eigen_value_calculation(FILE *fp){
     int flag = 0;
@@ -102,13 +100,12 @@ void test_eigen_value_calculation(FILE *fp){
         fprintf(fp, "%s--> %s\n",__func__, "Failed");
     }
 }
-/***********************************************************************************************
- * \This function tests the eigen_vector_calculation function outputs against the expected value
+/** \brief function tests the eigen_vector_calculation function outputs against the expected value
  * It writes Passed or Failed into a file according to the outcome of the test.
  * 
- * @param :               FILE
- * @return:               void
- ***********************************************************************************************/
+ * @param[in]               FILE
+ * \return               void
+ */
 
 void test_eigen_vector_calculation(FILE *fp){
     int flag = 0;
@@ -133,13 +130,12 @@ void test_eigen_vector_calculation(FILE *fp){
         fprintf(fp, "%s--> %s\n",__func__, "Failed");
     }
 }
-/************************************************************************************
- * \This function tests the compute_alpha function outputs against the expected value
+/** \brief function tests the compute_alpha function outputs against the expected value
  * It writes Passed or Failed into a file according to the outcome of the test.
  * 
- * @param :               FILE
- * @return:               void
- ************************************************************************************/
+ * @param[in]               FILE
+ * \return               void
+ */
 
 void test_compute_alpha(FILE *fp){
     int flag = 0;
@@ -158,13 +154,12 @@ void test_compute_alpha(FILE *fp){
         fprintf(fp, "%s--> %s\n",__func__, "Failed");
     }
 }
-/************************************************************************************
- * \This function tests the compute_phi function outputs against the expected value
+/** \brief function tests the compute_phi function outputs against the expected value
  * It writes Passed or Failed into a file according to the outcome of the test.
  * 
- * @param :               FILE
- * @return:               void
- ************************************************************************************/
+ * @param[in]               FILE
+ * \return               void
+ */
 
 void test_compute_phi(FILE *fp){
     int flag = 0;
@@ -183,13 +178,12 @@ void test_compute_phi(FILE *fp){
         fprintf(fp, "%s--> %s\n",__func__, "Failed");
     }
 }
-/**************************************************************************************************************
- * \This function tests the compute_integrated_support_degree_score function outputs against the expected value
+/** \brief function tests the compute_integrated_support_degree_score function outputs against the expected value
  * It writes Passed or Failed into a file according to the outcome of the test.
  * 
- * @param :               FILE
- * @return:               void
- **************************************************************************************************************/
+ * @param[in]               FILE
+ * \return               void
+ */
 
 void test_compute_integrated_support_degree_score(FILE *fp){
     int flag = 0;
@@ -216,20 +210,19 @@ void test_compute_integrated_support_degree_score(FILE *fp){
         fprintf(fp, "%s---> %s\n",__func__, "Failed");
     }
 }
-/***********************************************************************************************************
- * \This function tests the faulty_sensor_and_sensor_fusion function outputs against the expected value
+/** \brief function tests the faulty_sensor_and_sensor_fusion function outputs against the expected value
  * It writes Passed or Failed into a file according to the outcome of the test.
  * 
- * @param :               FILE 
- * @return:               void
- ***********************************************************************************************************/
+ * @param[in]               FILE
+ * \return               void
+ */
 
 void test_faulty_sensor_and_sensor_fusion(FILE *fp){
     int flag = 0;
     double sensorValues[] = {53.2, 52.6, 42.7, 53.2, 52.8};
     double Z[] = {-1.065072, -0.840775, -0.200074, -1.065072, -0.946284};
     double ExpectedValue = 52.974590;
-    double ActualValue = faulty_sensor_and_sensor_fusion(Z, sensorValues, SIZE);
+    double ActualValue = faulty_sensor_and_sensor_fusion(Z, sensorValues, 0.7, SIZE);
     for(int counter = 0; counter < SIZE; counter++){
        	if(fabs(ActualValue-ExpectedValue)>0.001){
             flag = 1;

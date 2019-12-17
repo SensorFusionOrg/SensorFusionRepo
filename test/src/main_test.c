@@ -1,7 +1,7 @@
-/***************************************************************
- *  \Contains the test case functions to be called
+/** \file
+ * Contains the test case functions to be called
  *
- ***************************************************************/
+ */
 
 #include<stdio.h>
 #include<string.h>

@@ -57,6 +57,7 @@ test [This folder includes the test cases for testing the software]
 	This will create the folders bin, build and output in the same folder.
 
 3 - Once the software is compiled, it is ready to run. To run the software, type "make run" in the same terminal as before. 
+	The program will ask for the input for the criterion of principal components. Please put the input in percentage (eg. 70).
 	The output can be seen in the terminal for individual time stamp and also can be seen in the folder "output" in the output.txt file.
 
 4 - If you want to change the input file, just place the new .csv file in the input folder and perform steps 2 and 3. 

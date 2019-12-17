@@ -55,6 +55,6 @@ extern double* compute_integrated_support_degree_score(double[], double[], doubl
  * Calculates the fused value after identifying and removing
  * faulty sensor values.
  */
-extern double faulty_sensor_and_sensor_fusion(double[],double[], int);
+extern double faulty_sensor_and_sensor_fusion(double[],double[],double, int);
 
 #endif /* SensorFusionAlgorithm_h */
