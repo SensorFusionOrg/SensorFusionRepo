@@ -6,10 +6,9 @@ This folder contains the simple Sensor Fusion Algorithm implemented in C
 /**************************/
 
 README.txt
-SensorFusion_UserManual.pdf
 makefile
 
-src [This filder contains the source code for the implementation]
+src [This folder contains the source code for the implementation]
 	SensorFusionAlgorithm.c
 	main.c
 	sensorValueInput.c
@@ -32,12 +31,21 @@ build [This folder will be generated automatically when the program is compiled 
 bin [This folder will be generated automatically when the program is compiled and the executable will be stored in this folder]
 	executable
 
+test [This folder includes the test cases for testing the software]
+	data
+	testresults.txt
+	include
+	input
+		input.csv
+	test.h
+	src
+	main_test.c
+	testcases.c
 
 /*************************************/
 /****STEPS FOR RUNNING THE PROGRAM****/
 /*************************************/
 
-0 - The SensorFusion_UserManual.pdf contains an explanation of the working of this software.
 
 1 - Installing the GNU gsl libraries and dependencies:
 	1.1 - Open the terminal in the folder where you have cloned the repository in the terminal.
@@ -52,6 +60,8 @@ bin [This folder will be generated automatically when the program is compiled an
 	The output can be seen in the terminal for individual time stamp and also can be seen in the folder "output" in the output.txt file.
 
 4 - If you want to change the input file, just place the new .csv file in the input folder and perform steps 2 and 3. 
+
+5 - To remove the project objects and binaries use "make clean" command in the terminal.
 
 /****************************************/
 /****STEPS FOR RUNNING THE TEST CASES****/
