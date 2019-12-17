@@ -1,0 +1,75 @@
+\hypertarget{sensor_values_input_8c}{}\doxysection{src/sensor\+Values\+Input.c File Reference}
+\label{sensor_values_input_8c}\index{src/sensorValuesInput.c@{src/sensorValuesInput.c}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{sensor_values_input_8c_a71ff876b7c76e0ad0d252bfdf3456185}{sensor\+Value\+Read}} (const char $\ast$File, double array\mbox{[}$\,$\mbox{]}\mbox{[}M\+AX\mbox{]})
+\begin{DoxyCompactList}\small\item\em Function to read inputs from an input file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sensor_values_input_8c_a2a206a8892cc3f87160b8e1a81a17cd7}{fill\+Array}} (char $\ast$sensor\+Tuples\mbox{[}$\,$\mbox{]}, int cc, double array\mbox{[}$\,$\mbox{]}\mbox{[}M\+AX\mbox{]})
+\begin{DoxyCompactList}\small\item\em Function to fill the array of Sensor Values. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sensor_values_input_8c_a59a612b76fd16f63ac1ee75aa0b056e9}{get\+Data}} (char buff\mbox{[}$\,$\mbox{]}, char $\ast$sensor\+Token\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Function to tokenize each line read from .csv. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Containing logic to read sensor values from an input file 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{sensor_values_input_8c_a2a206a8892cc3f87160b8e1a81a17cd7}\label{sensor_values_input_8c_a2a206a8892cc3f87160b8e1a81a17cd7}} 
+\index{sensorValuesInput.c@{sensorValuesInput.c}!fillArray@{fillArray}}
+\index{fillArray@{fillArray}!sensorValuesInput.c@{sensorValuesInput.c}}
+\doxysubsubsection{\texorpdfstring{fillArray()}{fillArray()}}
+{\footnotesize\ttfamily void fill\+Array (\begin{DoxyParamCaption}\item[{char $\ast$}]{sensor\+Tuples\mbox{[}$\,$\mbox{]},  }\item[{int}]{cc,  }\item[{double}]{array\mbox{[}$\,$\mbox{]}\mbox{[}\+M\+A\+X\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Function to fill the array of Sensor Values. 
+
+The generated array would have first element as the number of sensors, second element as one of the timestamps and the rest of the array with values of the sensors for the particular timestamp. This function uses sequential indexing in increasing order. The values not provided are assumed to be zero. Eg. If sensor 1, 2, 5, 6 are given the array stores 6 sensor values from 1 to 6 with sensor 3 and 4 having zero value.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em $\ast$sensor\+Tuples} & \\
+\hline
+\mbox{\texttt{ in}}  & {\em cc} & \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em array} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{sensor_values_input_8c_a59a612b76fd16f63ac1ee75aa0b056e9}\label{sensor_values_input_8c_a59a612b76fd16f63ac1ee75aa0b056e9}} 
+\index{sensorValuesInput.c@{sensorValuesInput.c}!getData@{getData}}
+\index{getData@{getData}!sensorValuesInput.c@{sensorValuesInput.c}}
+\doxysubsubsection{\texorpdfstring{getData()}{getData()}}
+{\footnotesize\ttfamily void get\+Data (\begin{DoxyParamCaption}\item[{char}]{buff\mbox{[}$\,$\mbox{]},  }\item[{char $\ast$}]{sensor\+Token\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Function to tokenize each line read from .csv. 
+
+It creates a tuple which contains timestamp, sensor number and sensor values.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em buff} & \\
+\hline
+\mbox{\texttt{ in}}  & {\em $\ast$sensor\+Token} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{sensor_values_input_8c_a71ff876b7c76e0ad0d252bfdf3456185}\label{sensor_values_input_8c_a71ff876b7c76e0ad0d252bfdf3456185}} 
+\index{sensorValuesInput.c@{sensorValuesInput.c}!sensorValueRead@{sensorValueRead}}
+\index{sensorValueRead@{sensorValueRead}!sensorValuesInput.c@{sensorValuesInput.c}}
+\doxysubsubsection{\texorpdfstring{sensorValueRead()}{sensorValueRead()}}
+{\footnotesize\ttfamily void sensor\+Value\+Read (\begin{DoxyParamCaption}\item[{const char $\ast$}]{File,  }\item[{double}]{array\mbox{[}$\,$\mbox{]}\mbox{[}\+M\+A\+X\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Function to read inputs from an input file. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em $\ast$\+File} & Name of file consisting of sensor readings \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em array} & A 2D array to store sensor value sets for each timestamp given in the input file. \\
+\hline
+\end{DoxyParams}
+$<$ A pointer representation of 2-\/D array to store each field in a line from C\+SV

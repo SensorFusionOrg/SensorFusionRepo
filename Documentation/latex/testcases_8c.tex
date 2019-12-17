@@ -1,0 +1,154 @@
+\hypertarget{testcases_8c}{}\doxysection{test/src/testcases.c File Reference}
+\label{testcases_8c}\index{test/src/testcases.c@{test/src/testcases.c}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{testcases_8c_a2fde26ff67730578fc147cd27e9b8139}\label{testcases_8c_a2fde26ff67730578fc147cd27e9b8139}} 
+void {\bfseries test\+\_\+sensorinput\+\_\+from\+\_\+file} (F\+I\+LE $\ast$fpout)
+\item 
+void \mbox{\hyperlink{testcases_8c_acf05cf23bf56cc55a901f2ea67af5bd5}{test\+\_\+sdm\+\_\+calculator}} (F\+I\+LE $\ast$fp)
+\begin{DoxyCompactList}\small\item\em function tests the sdm calculator function outputs against the expected value It writes Passed or Failed into a file according to the outcome of the test. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{testcases_8c_ab4595e8937aa7fdaeba66ab3dc2b3066}{test\+\_\+eigen\+\_\+value\+\_\+calculation}} (F\+I\+LE $\ast$fp)
+\begin{DoxyCompactList}\small\item\em function tests the eigen\+\_\+value\+\_\+calculation function outputs against the expected value It writes Passed or Failed into a file according to the outcome of the test. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{testcases_8c_a087b3fa988454b303cae83fd8fb23d3d}{test\+\_\+eigen\+\_\+vector\+\_\+calculation}} (F\+I\+LE $\ast$fp)
+\begin{DoxyCompactList}\small\item\em function tests the eigen\+\_\+vector\+\_\+calculation function outputs against the expected value It writes Passed or Failed into a file according to the outcome of the test. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{testcases_8c_a9da230ddfece9a980802d4cccbc869ae}{test\+\_\+compute\+\_\+alpha}} (F\+I\+LE $\ast$fp)
+\begin{DoxyCompactList}\small\item\em function tests the compute\+\_\+alpha function outputs against the expected value It writes Passed or Failed into a file according to the outcome of the test. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{testcases_8c_aa4cde20a32a8cbebd9ebc6c43285efb1}{test\+\_\+compute\+\_\+phi}} (F\+I\+LE $\ast$fp)
+\begin{DoxyCompactList}\small\item\em function tests the compute\+\_\+phi function outputs against the expected value It writes Passed or Failed into a file according to the outcome of the test. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{testcases_8c_abce195b223348bb07b2fd09934d66b1a}{test\+\_\+compute\+\_\+integrated\+\_\+support\+\_\+degree\+\_\+score}} (F\+I\+LE $\ast$fp)
+\begin{DoxyCompactList}\small\item\em function tests the compute\+\_\+integrated\+\_\+support\+\_\+degree\+\_\+score function outputs against the expected value It writes Passed or Failed into a file according to the outcome of the test. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{testcases_8c_a5cdbe60c9566423a1726885edb8cfa5d}{test\+\_\+faulty\+\_\+sensor\+\_\+and\+\_\+sensor\+\_\+fusion}} (F\+I\+LE $\ast$fp)
+\begin{DoxyCompactList}\small\item\em function tests the faulty\+\_\+sensor\+\_\+and\+\_\+sensor\+\_\+fusion function outputs against the expected value It writes Passed or Failed into a file according to the outcome of the test. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Containing test case definitions for each function defined in the program Each test case calls the function and gets the returned values. It then checks those values against the expected value from the function. If both match, the test case passes otherwise it fails. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{testcases_8c_a9da230ddfece9a980802d4cccbc869ae}\label{testcases_8c_a9da230ddfece9a980802d4cccbc869ae}} 
+\index{testcases.c@{testcases.c}!test\_compute\_alpha@{test\_compute\_alpha}}
+\index{test\_compute\_alpha@{test\_compute\_alpha}!testcases.c@{testcases.c}}
+\doxysubsubsection{\texorpdfstring{test\_compute\_alpha()}{test\_compute\_alpha()}}
+{\footnotesize\ttfamily void test\+\_\+compute\+\_\+alpha (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+
+
+function tests the compute\+\_\+alpha function outputs against the expected value It writes Passed or Failed into a file according to the outcome of the test. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em F\+I\+LE} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{testcases_8c_abce195b223348bb07b2fd09934d66b1a}\label{testcases_8c_abce195b223348bb07b2fd09934d66b1a}} 
+\index{testcases.c@{testcases.c}!test\_compute\_integrated\_support\_degree\_score@{test\_compute\_integrated\_support\_degree\_score}}
+\index{test\_compute\_integrated\_support\_degree\_score@{test\_compute\_integrated\_support\_degree\_score}!testcases.c@{testcases.c}}
+\doxysubsubsection{\texorpdfstring{test\_compute\_integrated\_support\_degree\_score()}{test\_compute\_integrated\_support\_degree\_score()}}
+{\footnotesize\ttfamily void test\+\_\+compute\+\_\+integrated\+\_\+support\+\_\+degree\+\_\+score (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+
+
+function tests the compute\+\_\+integrated\+\_\+support\+\_\+degree\+\_\+score function outputs against the expected value It writes Passed or Failed into a file according to the outcome of the test. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em F\+I\+LE} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{testcases_8c_aa4cde20a32a8cbebd9ebc6c43285efb1}\label{testcases_8c_aa4cde20a32a8cbebd9ebc6c43285efb1}} 
+\index{testcases.c@{testcases.c}!test\_compute\_phi@{test\_compute\_phi}}
+\index{test\_compute\_phi@{test\_compute\_phi}!testcases.c@{testcases.c}}
+\doxysubsubsection{\texorpdfstring{test\_compute\_phi()}{test\_compute\_phi()}}
+{\footnotesize\ttfamily void test\+\_\+compute\+\_\+phi (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+
+
+function tests the compute\+\_\+phi function outputs against the expected value It writes Passed or Failed into a file according to the outcome of the test. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em F\+I\+LE} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{testcases_8c_ab4595e8937aa7fdaeba66ab3dc2b3066}\label{testcases_8c_ab4595e8937aa7fdaeba66ab3dc2b3066}} 
+\index{testcases.c@{testcases.c}!test\_eigen\_value\_calculation@{test\_eigen\_value\_calculation}}
+\index{test\_eigen\_value\_calculation@{test\_eigen\_value\_calculation}!testcases.c@{testcases.c}}
+\doxysubsubsection{\texorpdfstring{test\_eigen\_value\_calculation()}{test\_eigen\_value\_calculation()}}
+{\footnotesize\ttfamily void test\+\_\+eigen\+\_\+value\+\_\+calculation (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+
+
+function tests the eigen\+\_\+value\+\_\+calculation function outputs against the expected value It writes Passed or Failed into a file according to the outcome of the test. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em F\+I\+LE} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{testcases_8c_a087b3fa988454b303cae83fd8fb23d3d}\label{testcases_8c_a087b3fa988454b303cae83fd8fb23d3d}} 
+\index{testcases.c@{testcases.c}!test\_eigen\_vector\_calculation@{test\_eigen\_vector\_calculation}}
+\index{test\_eigen\_vector\_calculation@{test\_eigen\_vector\_calculation}!testcases.c@{testcases.c}}
+\doxysubsubsection{\texorpdfstring{test\_eigen\_vector\_calculation()}{test\_eigen\_vector\_calculation()}}
+{\footnotesize\ttfamily void test\+\_\+eigen\+\_\+vector\+\_\+calculation (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+
+
+function tests the eigen\+\_\+vector\+\_\+calculation function outputs against the expected value It writes Passed or Failed into a file according to the outcome of the test. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em F\+I\+LE} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{testcases_8c_a5cdbe60c9566423a1726885edb8cfa5d}\label{testcases_8c_a5cdbe60c9566423a1726885edb8cfa5d}} 
+\index{testcases.c@{testcases.c}!test\_faulty\_sensor\_and\_sensor\_fusion@{test\_faulty\_sensor\_and\_sensor\_fusion}}
+\index{test\_faulty\_sensor\_and\_sensor\_fusion@{test\_faulty\_sensor\_and\_sensor\_fusion}!testcases.c@{testcases.c}}
+\doxysubsubsection{\texorpdfstring{test\_faulty\_sensor\_and\_sensor\_fusion()}{test\_faulty\_sensor\_and\_sensor\_fusion()}}
+{\footnotesize\ttfamily void test\+\_\+faulty\+\_\+sensor\+\_\+and\+\_\+sensor\+\_\+fusion (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+
+
+function tests the faulty\+\_\+sensor\+\_\+and\+\_\+sensor\+\_\+fusion function outputs against the expected value It writes Passed or Failed into a file according to the outcome of the test. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em F\+I\+LE} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{testcases_8c_acf05cf23bf56cc55a901f2ea67af5bd5}\label{testcases_8c_acf05cf23bf56cc55a901f2ea67af5bd5}} 
+\index{testcases.c@{testcases.c}!test\_sdm\_calculator@{test\_sdm\_calculator}}
+\index{test\_sdm\_calculator@{test\_sdm\_calculator}!testcases.c@{testcases.c}}
+\doxysubsubsection{\texorpdfstring{test\_sdm\_calculator()}{test\_sdm\_calculator()}}
+{\footnotesize\ttfamily void test\+\_\+sdm\+\_\+calculator (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+
+
+function tests the sdm calculator function outputs against the expected value It writes Passed or Failed into a file according to the outcome of the test. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em F\+I\+LE} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}

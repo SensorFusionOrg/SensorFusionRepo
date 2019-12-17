@@ -1,0 +1,193 @@
+\hypertarget{_sensor_fusion_algorithm_8c}{}\doxysection{src/\+Sensor\+Fusion\+Algorithm.c File Reference}
+\label{_sensor_fusion_algorithm_8c}\index{src/SensorFusionAlgorithm.c@{src/SensorFusionAlgorithm.c}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double $\ast$ \mbox{\hyperlink{_sensor_fusion_algorithm_8c_a2422f171b63a7aa4045cbee03bc8fd09}{sdm\+\_\+calculator}} (double sensorinputs\mbox{[}$\,$\mbox{]}, int size)
+\begin{DoxyCompactList}\small\item\em Calculate Support Degree Matrix. \end{DoxyCompactList}\item 
+double $\ast$ \mbox{\hyperlink{_sensor_fusion_algorithm_8c_a3b38e37d2672eeda8319b9deefe5b860}{eigen\+\_\+value\+\_\+calculation}} (double $\ast$dmatrix, int size)
+\begin{DoxyCompactList}\small\item\em Calculates Eigen\+Values for a given Support Degree Matrix. \end{DoxyCompactList}\item 
+double $\ast$ \mbox{\hyperlink{_sensor_fusion_algorithm_8c_a356a4bff10adf4485b799623569073f7}{eigen\+\_\+vector\+\_\+calculation}} (double $\ast$dmatrix, int size, int column)
+\begin{DoxyCompactList}\small\item\em Produces Eigen\+Vectors for a specific Eigen\+Value of Support Degree Matrix. \end{DoxyCompactList}\item 
+double $\ast$ \mbox{\hyperlink{_sensor_fusion_algorithm_8c_a46b06fe6d95527f1c37b5bb20af2868c}{compute\+\_\+alpha}} (double eval\+\_\+i\mbox{[}$\,$\mbox{]}, int size)
+\begin{DoxyCompactList}\small\item\em Calculates the contribution rates i.\+e. alphas of every sensor for a specific time stamp. \end{DoxyCompactList}\item 
+double $\ast$ \mbox{\hyperlink{_sensor_fusion_algorithm_8c_a1223aa63f462649c92dd5c628541bcf4}{compute\+\_\+phi}} (double list\+\_\+of\+\_\+alphas\mbox{[}$\,$\mbox{]}, int size)
+\begin{DoxyCompactList}\small\item\em Calculates the accumulated contribution rates i.\+e. phis for a specific time stamp. \end{DoxyCompactList}\item 
+double $\ast$ \mbox{\hyperlink{_sensor_fusion_algorithm_8c_aeb252a5b84d1430b1c65b08d384202bd}{compute\+\_\+integrated\+\_\+support\+\_\+degree\+\_\+score}} (double sensorinputs\mbox{[}$\,$\mbox{]}, double list\+\_\+of\+\_\+alphas\mbox{[}$\,$\mbox{]}, double list\+\_\+of\+\_\+phi\mbox{[}$\,$\mbox{]}, double dmatrix\mbox{[}$\,$\mbox{]}, double criterion, int size)
+\begin{DoxyCompactList}\small\item\em Calculates the integrated support degree score of all sensors at a specific time stamp. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{_sensor_fusion_algorithm_8c_a4efb518898ca01792fc025b01d36a862}{faulty\+\_\+sensor\+\_\+and\+\_\+sensor\+\_\+fusion}} (double Z\mbox{[}$\,$\mbox{]}, double inputsensors\mbox{[}$\,$\mbox{]}, double criterion, int size)
+\begin{DoxyCompactList}\small\item\em Determines a fused reading by eliminating erroneous readings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contains functions performing each step of the algorithm. The calculation of Eigen Values, Eigen Vectors and integrated support degree score has been implemented using an external library called gsl. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_sensor_fusion_algorithm_8c_a46b06fe6d95527f1c37b5bb20af2868c}\label{_sensor_fusion_algorithm_8c_a46b06fe6d95527f1c37b5bb20af2868c}} 
+\index{SensorFusionAlgorithm.c@{SensorFusionAlgorithm.c}!compute\_alpha@{compute\_alpha}}
+\index{compute\_alpha@{compute\_alpha}!SensorFusionAlgorithm.c@{SensorFusionAlgorithm.c}}
+\doxysubsubsection{\texorpdfstring{compute\_alpha()}{compute\_alpha()}}
+{\footnotesize\ttfamily double$\ast$ compute\+\_\+alpha (\begin{DoxyParamCaption}\item[{double}]{eval\+\_\+i\mbox{[}$\,$\mbox{]},  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Calculates the contribution rates i.\+e. alphas of every sensor for a specific time stamp. 
+
+Produces an array of contribution rates a.\+k.\+a alphas where the contribution rate of nth sensor is the nth element in that array.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em eval\+\_\+i} & Eigen\+Values in descending order as produced by eigen\+\_\+value\+\_\+calculation function. \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & Number of Eigen\+Values which is same as the number of sensors and number of contribution rate values.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Contribution rates of all sensors for a specific time stamp. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_sensor_fusion_algorithm_8c_aeb252a5b84d1430b1c65b08d384202bd}\label{_sensor_fusion_algorithm_8c_aeb252a5b84d1430b1c65b08d384202bd}} 
+\index{SensorFusionAlgorithm.c@{SensorFusionAlgorithm.c}!compute\_integrated\_support\_degree\_score@{compute\_integrated\_support\_degree\_score}}
+\index{compute\_integrated\_support\_degree\_score@{compute\_integrated\_support\_degree\_score}!SensorFusionAlgorithm.c@{SensorFusionAlgorithm.c}}
+\doxysubsubsection{\texorpdfstring{compute\_integrated\_support\_degree\_score()}{compute\_integrated\_support\_degree\_score()}}
+{\footnotesize\ttfamily double$\ast$ compute\+\_\+integrated\+\_\+support\+\_\+degree\+\_\+score (\begin{DoxyParamCaption}\item[{double}]{sensorinputs\mbox{[}$\,$\mbox{]},  }\item[{double}]{list\+\_\+of\+\_\+alphas\mbox{[}$\,$\mbox{]},  }\item[{double}]{list\+\_\+of\+\_\+phi\mbox{[}$\,$\mbox{]},  }\item[{double}]{dmatrix\mbox{[}$\,$\mbox{]},  }\item[{double}]{criterion,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Calculates the integrated support degree score of all sensors at a specific time stamp. 
+
+Produces an array of integrated support degree scores where the score nth sensor is the nth element in that array.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em sensorinputs} & Readings of all sensors at a specific timestamp. \\
+\hline
+\mbox{\texttt{ in}}  & {\em list\+\_\+of\+\_\+alphas} & Contribution rates a.\+k.\+a alphas where the contribution rate of nth sensor is the nth element in that array. \\
+\hline
+\mbox{\texttt{ in}}  & {\em list\+\_\+of\+\_\+phi} & Accumulated contribution rates a.\+k.\+a phis where the accumulated contribution rate of m sensors is the mth element in array. \\
+\hline
+\mbox{\texttt{ in}}  & {\em dmatrix} & Support Degree Matrix of the sensor readings at a specific time stamp. \\
+\hline
+\mbox{\texttt{ in}}  & {\em criterion} & The minimum value of accumulated contribution rate required to determine the number of principal components to be taken into consideration. The expected value is not in percentage but between 0 and 1. \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & The number of sensors.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An array consisting of the integrated support degree score of each sensor at a specific timestamp. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_sensor_fusion_algorithm_8c_a1223aa63f462649c92dd5c628541bcf4}\label{_sensor_fusion_algorithm_8c_a1223aa63f462649c92dd5c628541bcf4}} 
+\index{SensorFusionAlgorithm.c@{SensorFusionAlgorithm.c}!compute\_phi@{compute\_phi}}
+\index{compute\_phi@{compute\_phi}!SensorFusionAlgorithm.c@{SensorFusionAlgorithm.c}}
+\doxysubsubsection{\texorpdfstring{compute\_phi()}{compute\_phi()}}
+{\footnotesize\ttfamily double$\ast$ compute\+\_\+phi (\begin{DoxyParamCaption}\item[{double}]{list\+\_\+of\+\_\+alphas\mbox{[}$\,$\mbox{]},  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Calculates the accumulated contribution rates i.\+e. phis for a specific time stamp. 
+
+Produces an array of accumulated contribution rates where the accumulated contribution rate of first n sensors is the nth element in that array.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em list\+\_\+of\+\_\+alphas} & Contribution rates i.\+e., alphas as produced by compute\+\_\+alpha function. \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & Number of contribution rates which is the same as the number of sensors.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Array of accumulated contribution rates of n sensors for specific time stamp. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_sensor_fusion_algorithm_8c_a3b38e37d2672eeda8319b9deefe5b860}\label{_sensor_fusion_algorithm_8c_a3b38e37d2672eeda8319b9deefe5b860}} 
+\index{SensorFusionAlgorithm.c@{SensorFusionAlgorithm.c}!eigen\_value\_calculation@{eigen\_value\_calculation}}
+\index{eigen\_value\_calculation@{eigen\_value\_calculation}!SensorFusionAlgorithm.c@{SensorFusionAlgorithm.c}}
+\doxysubsubsection{\texorpdfstring{eigen\_value\_calculation()}{eigen\_value\_calculation()}}
+{\footnotesize\ttfamily double$\ast$ eigen\+\_\+value\+\_\+calculation (\begin{DoxyParamCaption}\item[{double $\ast$}]{dmatrix,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Calculates Eigen\+Values for a given Support Degree Matrix. 
+
+Creates an 1D array of Eigen\+Values for a given support degree matrix using functions from the gsl external library.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em dmatrix} & The Support Degree matrix produced by sdm\+\_\+calculator function. \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & The number of sensors being considered which is same as size of dmatrix.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A 1D array of Eigen\+Values in descending order for the given dmatrix. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_sensor_fusion_algorithm_8c_a356a4bff10adf4485b799623569073f7}\label{_sensor_fusion_algorithm_8c_a356a4bff10adf4485b799623569073f7}} 
+\index{SensorFusionAlgorithm.c@{SensorFusionAlgorithm.c}!eigen\_vector\_calculation@{eigen\_vector\_calculation}}
+\index{eigen\_vector\_calculation@{eigen\_vector\_calculation}!SensorFusionAlgorithm.c@{SensorFusionAlgorithm.c}}
+\doxysubsubsection{\texorpdfstring{eigen\_vector\_calculation()}{eigen\_vector\_calculation()}}
+{\footnotesize\ttfamily double$\ast$ eigen\+\_\+vector\+\_\+calculation (\begin{DoxyParamCaption}\item[{double $\ast$}]{dmatrix,  }\item[{int}]{size,  }\item[{int}]{column }\end{DoxyParamCaption})}
+
+
+
+Produces Eigen\+Vectors for a specific Eigen\+Value of Support Degree Matrix. 
+
+Creates an 1D array of Eigen\+Vectors for a given support degree matrix using functions from the gsl external library. The actual Eigen\+Value is not supplied but the position of Eigen\+Value in a descending sorted array of Eigen\+Values as returned by eigen\+\_\+value\+\_\+calculation method is given.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em dmatrix} & The Support Degree matrix produced by sdm\+\_\+calculator function. \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & The number of sensors being considered which is same as size of dmatrix. \\
+\hline
+\mbox{\texttt{ in}}  & {\em column} & The column number of the Eigen\+Vector matrix produced by the gsl library. This is same as the position of Eigen\+Value when the Eigen\+Values are sorted in descending order.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A 1D array of Eigen\+Vectors for the given Eigen\+Value. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_sensor_fusion_algorithm_8c_a4efb518898ca01792fc025b01d36a862}\label{_sensor_fusion_algorithm_8c_a4efb518898ca01792fc025b01d36a862}} 
+\index{SensorFusionAlgorithm.c@{SensorFusionAlgorithm.c}!faulty\_sensor\_and\_sensor\_fusion@{faulty\_sensor\_and\_sensor\_fusion}}
+\index{faulty\_sensor\_and\_sensor\_fusion@{faulty\_sensor\_and\_sensor\_fusion}!SensorFusionAlgorithm.c@{SensorFusionAlgorithm.c}}
+\doxysubsubsection{\texorpdfstring{faulty\_sensor\_and\_sensor\_fusion()}{faulty\_sensor\_and\_sensor\_fusion()}}
+{\footnotesize\ttfamily double faulty\+\_\+sensor\+\_\+and\+\_\+sensor\+\_\+fusion (\begin{DoxyParamCaption}\item[{double}]{Z\mbox{[}$\,$\mbox{]},  }\item[{double}]{inputsensors\mbox{[}$\,$\mbox{]},  }\item[{double}]{criterion,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Determines a fused reading by eliminating erroneous readings. 
+
+Outputs a list of faulty sensors and a final fused reading value for a specific time stamp on to a text file.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em Z} & Array containing integrated support degree score of each sensor at a specific timestamp. \\
+\hline
+\mbox{\texttt{ in}}  & {\em inputsensors} & Readings of all sensors for a specific timestamp. \\
+\hline
+\mbox{\texttt{ in}}  & {\em criterion} & from the user multiplying to the average. \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & The number of sensors being considered.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The fused reading value after eliminating faulty sensor readings. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_sensor_fusion_algorithm_8c_a2422f171b63a7aa4045cbee03bc8fd09}\label{_sensor_fusion_algorithm_8c_a2422f171b63a7aa4045cbee03bc8fd09}} 
+\index{SensorFusionAlgorithm.c@{SensorFusionAlgorithm.c}!sdm\_calculator@{sdm\_calculator}}
+\index{sdm\_calculator@{sdm\_calculator}!SensorFusionAlgorithm.c@{SensorFusionAlgorithm.c}}
+\doxysubsubsection{\texorpdfstring{sdm\_calculator()}{sdm\_calculator()}}
+{\footnotesize\ttfamily double$\ast$ sdm\+\_\+calculator (\begin{DoxyParamCaption}\item[{double}]{sensorinputs\mbox{[}$\,$\mbox{]},  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Calculate Support Degree Matrix. 
+
+Creates the support degree matrix as a 1D array instead of a 2D array to make it easier for the calculation of Eigen Values and Eigen Vectors using the gsl library.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em sensorinputs} & Readings of all sensors for a specific timestamp. \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & The number of sensors being considered.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A 1D array which is the Support Degree Matrix. 
+\end{DoxyReturn}
