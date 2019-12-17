@@ -9,6 +9,7 @@
 
 #define MAX 512
 #define TUPLE_SIZE 3
+#define LINE 50
 
 void sensorValueRead(const char *File , double array[][MAX]);
 void getData(char *buff, char *sensorToken[]);

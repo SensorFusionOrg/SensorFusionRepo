@@ -34,9 +34,8 @@ int main(void){
     fclose(fpoutput);
 
     //Scans through the entire set of input sets and stops at the end of data set
-    while((int)sensorvaluesets[timestampsetcounter][0]!= -1){
+    while((int)sensorvaluesets[numtimestamp][0]!= -1){
         numtimestamp++;
-        timestampsetcounter++;
     }
     double fusion_result[numtimestamp];
     double *sensorinputs[numtimestamp];
@@ -85,7 +84,4 @@ int main(void){
         fprintf(fpoutput, "%s","\n");
         fclose(fpoutput);
     }
-	//faulty_sensor(Z,size);
-	//compute_phi(compute_alpha(eigen_value_calculation(sdm_calculator(sensorinputs, size), size),size),size);
-    //eigen_vector_calculation(sdm_calculator(sensorinputs,size),size,7);
 }

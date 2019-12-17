@@ -16,7 +16,7 @@
 void sensorValueRead(const char *File , double array[][MAX]){
     FILE *fp = fopen(File,"r");
     int count=0;
-    char buff[50];
+    char buff[LINE];
     char *sensorTuples[TUPLE_SIZE]; /**< A pointer representation of 2-D array to store each field in a line from CSV */
     char *timestmpValue = NULL;
     int flag = 0;
@@ -26,7 +26,7 @@ void sensorValueRead(const char *File , double array[][MAX]){
 
         //To prevent fgets from skipping the first character due to getc in previous step
         fseek(fp, -1, SEEK_CUR);
-        fgets(buff, 50, (FILE*)fp);
+        fgets(buff, LINE, (FILE*)fp);
         count++;
 
         //To skip the header line in csv

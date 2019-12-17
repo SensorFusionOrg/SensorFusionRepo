@@ -1,0 +1,8 @@
+test_sensorinput_from_file---> Passed
+test_sdm_calculator---> Passed
+test_eigen_value_calculation--> Passed
+test_eigen_vector_calculation--> Passed
+test_compute_alpha--> Passed
+test_compute_phi--> Passed
+test_compute_integrated_support_degree_score---> Passed
+test_faulty_sensor_and_sensor_fusion--> Passed
