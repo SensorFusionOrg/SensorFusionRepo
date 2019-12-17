@@ -7,6 +7,7 @@ This folder contains the simple Sensor Fusion Algorithm implemented in C
 
 README.txt
 makefile
+prereq.sh
 
 Documentation [This folder contains the documentation generated using doxygen]
 
