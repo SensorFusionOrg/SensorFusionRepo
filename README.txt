@@ -8,6 +8,8 @@ This folder contains the simple Sensor Fusion Algorithm implemented in C
 README.txt
 makefile
 
+Documentation [This folder contains the documentation generated using doxygen]
+
 src [This folder contains the source code for the implementation]
 	SensorFusionAlgorithm.c
 	main.c
