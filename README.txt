@@ -54,7 +54,7 @@ The software has been tested on Ubuntu 18.04 and works as expected.
 1 - Installing the GNU gsl libraries and dependencies:
 	1.1 - Open the terminal in the folder where you have cloned the repository in the terminal.
 	1.2 - Run the dependencies installer by running the "prereq.sh" script. To make the script file executable, type "chmod +x prereq.sh" without quotes. 
-              Then type "./prereq.sh"  without quotes and wait till the libararies are installed. (This may take a while depending on the system speed)
+              Then type "sudo ./prereq.sh"  without quotes and wait till the libararies are installed. (This may take a while depending on the system speed)
 	1.3 - Move to step 2 once this is complete. Try re-running the script if you face any error.
 
 2 - To compile the software, open terminal in the folder where you have cloned the repository and type "make all" without quotes.
