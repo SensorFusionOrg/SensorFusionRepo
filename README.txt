@@ -49,6 +49,7 @@ test [This folder includes the test cases for testing the software]
 /****STEPS FOR RUNNING THE PROGRAM****/
 /*************************************/
 
+The software has been tested on Ubuntu 18.04 and works as expected.
 
 1 - Installing the GNU gsl libraries and dependencies:
 	1.1 - Open the terminal in the folder where you have cloned the repository in the terminal.
