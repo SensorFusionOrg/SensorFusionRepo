@@ -1,3 +1,8 @@
+Project by:
+Rishabh Sudhir Jiresal - rishabhjiresal@cmail.carleton.ca
+Amitav Shaw - amitavshaw@cmail.carleton.ca
+Nikhil Shah - nikhilshah3@cmail.carleton.ca
+
 This folder contains the simple Sensor Fusion Algorithm implemented in C
 
 
