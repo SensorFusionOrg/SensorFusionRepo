@@ -77,6 +77,8 @@ double* eigen_value_calculation(double* dmatrix, int size){
         eval_i[i] = gsl_vector_get (eval, i);
         //printf("eigenvalue = %g\n", eval_i[i]);
     }
+    gsl_matrix_free(evec);
+    gsl_vector_free(eval);
     return eval_i;
 }
 
@@ -113,6 +115,8 @@ double* eigen_vector_calculation(double* dmatrix, int size, int column){
         evec_i[i]= gsl_matrix_get(evec, i, column);
         //printf("Eigen Vector: %g\n", evec_i[i]);
     }
+    gsl_matrix_free(evec);
+    gsl_vector_free(eval);
     return evec_i;
 }
 
@@ -278,6 +282,12 @@ double* compute_integrated_support_degree_score(double sensorinputs[],
     for(rows2=0;rows2<size;rows2++){
         printf ("m(%d) = %lf\n", rows2, Z[rows2] );
     }
+  gsl_matrix_free(y_temp);
+  gsl_matrix_free(y);
+  gsl_matrix_free(dmatrix2d);
+  gsl_matrix_free(Z_temp);
+  free(list_of_m_phi);
+  free(evec_i);
   return Z;
 }
 
@@ -360,5 +370,7 @@ double faulty_sensor_and_sensor_fusion(double Z[], double inputsensors[], double
     for(i=0;i<size;i++){
         fusion_value += weight[i] * inputsensors[i];
     }
+    free(weight);
+    free(fault);
     return fusion_value;
 }
