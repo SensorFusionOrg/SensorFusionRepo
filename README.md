@@ -1,60 +1,54 @@
-Project by:
-Rishabh Sudhir Jiresal - rishabhjiresal@cmail.carleton.ca
-Amitav Shaw - amitavshaw@cmail.carleton.ca
-Nikhil Shah - nikhilshah3@cmail.carleton.ca
+# Sensor Fusion
+	Project by:
+	Rishabh Sudhir Jiresal - rishabhjiresal@cmail.carleton.ca
+	Amitav Shaw - amitavshaw@cmail.carleton.ca
+	Nikhil Shah - nikhilshah3@cmail.carleton.ca
 
-This folder contains the simple Sensor Fusion Algorithm implemented in C
-
-
-/**************************/
-/****FILES ORGANIZATION****/
-/**************************/
-
-README.txt
-makefile
-prereq.sh
+	This folder contains the simple Sensor Fusion Algorithm implemented in C
 
 
-Documentation [This folder contains the documentation generated using doxygen]
+## FILES ORGANIZATION
+	makefile
+	prereq.sh
+
+
+### Documentation [This folder contains the documentation generated using doxygen]
 	User_Manual.pdf
 
-src [This folder contains the source code for the implementation]
+### src [This folder contains the source code for the implementation]
 	SensorFusionAlgorithm.c
 	main.c
 	sensorValueInput.c
 
-include [This folder contains the header files for the source files]
+### include [This folder contains the header files for the source files]
 	SensorFusionAlgorithm.h
 	input.h
 
-input [This folder contains the input file which will be given to the program in csv format]
+### input [This folder contains the input file which will be given to the program in csv format]
 	input.csv
 
-output [This folder will be generated automatically when make statement will be used]
+### output [This folder will be generated automatically when make statement will be used]
 	output.txt
 
-build [This folder will be generated automatically when the program is compiled and the object files will be stored in this folder]
+### build [This folder will be generated automatically when the program is compiled and the object files will be stored in this folder]
 	SensorFusionAlgorithm.o
 	main.o
 	sensorValuesInput.o
 
-bin [This folder will be generated automatically when the program is compiled and the executable will be stored in this folder]
+### bin [This folder will be generated automatically when the program is compiled and the executable will be stored in this folder]
 	executable
 
-test [This folder includes the test cases for testing the software]
+### test [This folder includes the test cases for testing the software]
 	data
 	testresults.txt
 	include
 	input
-		input.csv
+	input.csv
 	test.h
 	src
 	main_test.c
 	testcases.c
-
-/*************************************/
-/****STEPS FOR RUNNING THE PROGRAM****/
-/*************************************/
+## STEPS FOR RUNNING THE PROGRAM
 
 The software has been tested on Linux Ubuntu and works as expected.
 
@@ -75,9 +69,7 @@ The software has been tested on Linux Ubuntu and works as expected.
 
 5 - To remove the project objects and binaries use "make clean" command in the terminal.
 
-/****************************************/
-/****STEPS FOR RUNNING THE TEST CASES****/
-/****************************************/
+## STEPS FOR RUNNING THE TEST CASES
 
 0 - To compile the testing software, open terminal in the folder you have cloned the repository and run "make test_all"
         This will create the folders bin, build and data folder in the test directory. This will compile the testing software
